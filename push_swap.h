@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:18 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/05 17:35:09 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/06 15:38:05 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,14 @@
 
 typedef struct	s_list
 {
-	int	number;
+	int				number;
 	struct s_list	*next;
-}	a, b;
+}	t_list;
+
+typedef struct	s_stack
+{
+	t_list	*a; //pointer to the head node
+	t_list	*b;
+}	t_stack;
 
 #endif
