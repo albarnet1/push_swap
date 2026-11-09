@@ -6,13 +6,14 @@
 #    By: albarnet <albarnet@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2026/11/05 14:43:11 by albarnet      #+#    #+#                  #
-#    Updated: 2026/11/05 16:30:17 by albarnet      ########   odam.nl          #
+#    Updated: 2026/11/09 14:46:37 by albarnet      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 CC := cc
 CFLAGS := -Wall -Wextra -Werror
 NAME := push_swap
+NAME2 := push_swap.out
 FTPRINTFSOURCES := ft_printf_libft/ft_printf.c \
 		ft_printf_libft/ft_putnbr_base.c \
 		ft_printf_libft/ft_putnbr_base_unsigned.c
@@ -41,14 +42,21 @@ all: $(NAME)
 $(NAME): $(OBJECTS)
 	ar rcs $(NAME) $(OBJECTS)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+%.o : %.c ft_printf_libft/ft_printf.a
+	$(CC) $(CFLAGS) -I./ft_printf_libft -I./ft_printf_libft/Libft -c $< -o $(NAME2)
+
+ft_printf_libft/ft_printf.a:
+	$(MAKE) -C $(dir $@)
+
 
 # ft_printf.o: ft_printf.c
 # 	$(CC) $(CFLAGS) -c ft_printf.c -o ft_printf.o
 
-ft_conversions.o: ft_conversions.c
-	$(CC) $(CFLAGS) -c ft_conversions.c -o ft_conversions.o
+# ft_conversions.o: ft_conversions.c
+# 	$(CC) $(CFLAGS) -c ft_conversions.c -o ft_conversions.o
+
+libft: 
+	
 
 clean:
 	rm -f $(OBJECTS)

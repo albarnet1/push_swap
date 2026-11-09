@@ -6,11 +6,13 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/09 13:42:03 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/09 17:22:57 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+// #include "libft.h"
+// #include "ft_printf.h"
 
 int	ft_free(t_stack **stck)
 {
@@ -54,7 +56,9 @@ void	ft_stckadd_back(t_stack **lst, t_stack *new)
 {
 	t_stack	*tmp;
 
-	if (!(*lst))
+	if (!lst || !new)
+		return ;
+	if (!*lst)
 	{
 		*lst = new;
 		return ;
@@ -70,10 +74,15 @@ int main(int argc, char **argv)
 	int i;
 	int nbr;
 	int mode;
-	t_stack		*stcks;
+	t_group		*stcks;
 	t_stack		*tmp;
 	
-	stcks = NULL;
+	//stcks = NULL;
+	stcks = malloc(sizeof(t_group));
+	if (!stcks)
+		return (0);
+	stcks->a = NULL;
+	stcks->b = NULL;
 	i = 1;
 	nbr = 0;
 	mode = 0;
@@ -103,16 +112,16 @@ int main(int argc, char **argv)
 	{
 		if (ft_isnum(argv[i]) == 0)
 			return (ft_free(&(stcks->a)));
-		tmp = malloc(sizeof(t_list));
+		tmp = malloc(sizeof(t_stack));
 		if (!tmp)
 			return (0);
 		nbr = ft_atoi(argv[i++]);
-		tmp->a->number = nbr;
-		tmp->a->next = NULL;
+		tmp->number = nbr;
+		tmp->next = NULL;
 		ft_stckadd_back(&(stcks->a), tmp);
 	}
 	i = 1;
-	while(i < argc)
+	while (i < argc)
 		ft_printf("[%s]\n", argv[i++]);
 	ft_printf("{%d}", argc - 1);
 }
