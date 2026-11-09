@@ -6,7 +6,7 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 15:25:49 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/09 14:24:04 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/09 14:45:32 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,24 +103,36 @@ void	rr(t_group *group)
 
 // Rotate a/b in the reverse order: The last element becomes the first one.
 
-void rra()
+void rrotate(t_stack **stack)
 {
-	int	i;
-	i = ft_lstsize(a[0]) - 1;
-	ft_lstadd_front(a, a[i]);
-	free(a[i]);
+	t_stack *new;
+	t_stack *tmp;
+	
+	new = ft_lstlast(*stack);
+	tmp = *stack;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = NULL;
+	ft_lstlast(*stack)->next = NULL;
+	ft_lstadd_front(stack, new);
 }
 
-void rrb()
+void rra(t_group *group)
 {
-	int	i;
-	i = ft_lstsize(b[0]) - 1;
-	ft_lstadd_front(b, b[i]);
-	free(b[i]);
+	if (group != NULL)
+		rrotate(&group->a);
+}
+
+void rrb(t_group *group)
+{
+	if (group != NULL)
+		rrotate(&group->b);
 }
 
 void rrr()
 {
-	rra();
-	rrb();
+	if (group != NULL)
+		rrotate(&group->a);
+		rrotate(&group->b);
+		
 }
