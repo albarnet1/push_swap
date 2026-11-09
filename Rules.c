@@ -6,27 +6,46 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 15:25:49 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/05 16:26:38 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/09 13:01:51 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Swap a/b: go to the second element and put it in front
-void	sa(void)
+// Swap a/b: go to the second element and put it in front. Do nothing if there is only one or no elements. 
+void	swap(t_list **lst)
 {
-	ft_lstadd_front(a, a[1]);
+	t_list *first;
+	t_list *second;
+	
+	if (lst == NULL || *lst == NULL || (*lst)->next == NULL)
+		return ;
+	first = *lst;
+	second = first->next;
+	first->next = second->next;
+	second->next = first;
+	*lst = second;
 }
 
-void	sb(void)
+void	sa(t_stack *stack)
 {
-	ft_lstadd_front(b, b[1]);
+	if (stack != NULL)
+		swap(&stack->a);
 }
 
-void	ss(void)
+void	sb(t_stack *stack)
 {
-	sa();
-	sb();
+	if (stack != NULL)
+		swap(&stack->b);
+}
+
+void	ss(t_stack *stack)
+{
+	if (stack != NULL)
+	{
+		swap(&stack->a);
+		swap(&stack->b);
+	}
 }
 
 // Push a/b: add top element to the other list front
