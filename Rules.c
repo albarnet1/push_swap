@@ -6,7 +6,7 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 15:25:49 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/09 14:45:32 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/09 14:48:45 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void rrb(t_group *group)
 		rrotate(&group->b);
 }
 
-void rrr()
+void rrr(t_group *group)
 {
 	if (group != NULL)
 		rrotate(&group->a);
