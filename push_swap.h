@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:18 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/06 17:06:03 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/09 13:45:41 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 # include "ft_printf_libft/Libft/libft.h"
 # include "ft_printf_libft/ft_printf.h"
 
-typedef struct	s_list
-{
-	int				number;
-	struct s_list	*next;
-}	t_list;
-
 typedef struct	s_stack
 {
-	t_list	*a; //pointer to the head node
-	t_list	*b;
+	int				number;
+	struct s_stack	*next;
 }	t_stack;
+
+typedef struct	s_group
+{
+	t_stack	*a; //pointer to the head node
+	t_stack	*b;
+}	t_group;
 
 #endif

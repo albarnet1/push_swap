@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/06 15:51:11 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/09 13:42:03 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ int main(int argc, char **argv)
 	int i;
 	int nbr;
 	int mode;
-	t_stack		*stck_a;
+	t_stack		*stcks;
 	t_stack		*tmp;
 	
-	stck_a = NULL;
+	stcks = NULL;
 	i = 1;
 	nbr = 0;
 	mode = 0;
@@ -102,14 +102,14 @@ int main(int argc, char **argv)
 	while (i < argc)
 	{
 		if (ft_isnum(argv[i]) == 0)
-			return (ft_free(&stck_a));
-		tmp = malloc(sizeof(t_stack));
+			return (ft_free(&(stcks->a)));
+		tmp = malloc(sizeof(t_list));
 		if (!tmp)
 			return (0);
 		nbr = ft_atoi(argv[i++]);
-		tmp->number = nbr;
-		tmp->next = NULL;
-		ft_stckadd_back(&stck_a, tmp);
+		tmp->a->number = nbr;
+		tmp->a->next = NULL;
+		ft_stckadd_back(&(stcks->a), tmp);
 	}
 	i = 1;
 	while(i < argc)
