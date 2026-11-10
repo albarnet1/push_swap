@@ -6,7 +6,7 @@
 #    By: albarnet <albarnet@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2026/11/05 14:43:11 by albarnet      #+#    #+#                  #
-#    Updated: 2026/11/09 14:46:37 by albarnet      ########   odam.nl          #
+#    Updated: 2026/11/10 12:41:02 by albarnet      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ $(NAME): $(OBJECTS)
 	ar rcs $(NAME) $(OBJECTS)
 
 %.o : %.c ft_printf_libft/ft_printf.a
-	$(CC) $(CFLAGS) -I./ft_printf_libft -I./ft_printf_libft/Libft -c $< -o $(NAME2)
+	$(CC) $(CFLAGS) -I./ft_printf_libft -I./ft_printf_libft/Libft -c $< -o $(NAME)
 
 ft_printf_libft/ft_printf.a:
 	$(MAKE) -C $(dir $@)
@@ -67,6 +67,9 @@ fclean: clean
 	rm -f $(NAME)
 	$(MAKE) -C ft_printf_libft fclean
 	$(MAKE) -C ft_printf_libft/Libft fclean
+
+aclean:
+	rm -f a.out
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/09 17:22:57 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/10 12:39:04 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,59 +69,72 @@ void	ft_stckadd_back(t_stack **lst, t_stack *new)
 	tmp->next = new;
 }
 
-int main(int argc, char **argv)
+int	ft_fill_list(t_stack **a, t_stack *tmp, int i, int argc, char **argv)
 {
-	int i;
 	int nbr;
-	int mode;
-	t_group		*stcks;
-	t_stack		*tmp;
-	
-	//stcks = NULL;
-	stcks = malloc(sizeof(t_group));
-	if (!stcks)
-		return (0);
-	stcks->a = NULL;
-	stcks->b = NULL;
-	i = 1;
+
 	nbr = 0;
-	mode = 0;
-	if (argc < 2)
-		return (0);
-	if (ft_strncmp(argv[1], "--simple", 8) == 0)
-	{
-		mode = 1;
-		i = 2;
-	}
-	if (ft_strncmp(argv[1], "--medium", 8) == 0)
-	{
-		mode = 2;
-		i = 2;
-	}
-	if (ft_strncmp(argv[1], "--complex", 9) == 0)
-	{
-		mode = 3;
-		i = 2;
-	}
-	if (ft_strncmp(argv[1], "--adaptive", 10) == 0)
-	{
-		mode = 4;
-		i = 2;
-	}
 	while (i < argc)
 	{
 		if (ft_isnum(argv[i]) == 0)
-			return (ft_free(&(stcks->a)));
+		{
+			ft_printf("Error\n");
+			return (ft_free((a)));
+		}
 		tmp = malloc(sizeof(t_stack));
 		if (!tmp)
 			return (0);
 		nbr = ft_atoi(argv[i++]);
 		tmp->number = nbr;
 		tmp->next = NULL;
-		ft_stckadd_back(&(stcks->a), tmp);
+		ft_stckadd_back((a), tmp);
 	}
+	return (1);
+}
+
+int main(int argc, char **argv)
+{
+	int i;
+	int mode;
+	t_group		*stcks;
+	t_stack		*tmp;
+	t_stack		*current;
+
+	stcks = malloc(sizeof(t_group));
+	if (!stcks)
+		return (0);
+	stcks->a = NULL;
+	stcks->b = NULL;
+	i = 2;
+	mode = 0;
+	if (argc < 2)
+		return (0);
+	else if (ft_strncmp(argv[1], "--simple", 8) == 0)
+		mode = 1;
+	else if (ft_strncmp(argv[1], "--medium", 8) == 0)
+		mode = 2;
+	else if (ft_strncmp(argv[1], "--complex", 9) == 0)
+		mode = 3;
+	else if (ft_strncmp(argv[1], "--adaptive", 10) == 0)
+		mode = 4;
+	else 
+	{
+		if (argv[1] != NULL)
+			ft_printf("Error");
+		return (0);
+	}
+	if (ft_fill_list(&(stcks->a), tmp, i, argc, argv) == 0)
+		return (0);
+	current = stcks->a;
+	while (current)
+	{
+		ft_printf("%d ", current->number);
+		current = current->next;
+	}
+	ft_printf("\n");
 	i = 1;
 	while (i < argc)
 		ft_printf("[%s]\n", argv[i++]);
 	ft_printf("{%d}", argc - 1);
+	algorithm()
 }
