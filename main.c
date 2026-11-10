@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/10 13:28:31 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/10 15:42:17 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,5 @@ int main(int argc, char **argv)
 	while (i < argc)
 		ft_printf("[%s]\n", argv[i++]);
 	ft_printf("{%d}", argc - 1);
-	//algorithm(mode, stcks, bench);
+	algorithm(mode, stcks, bench);
 }
