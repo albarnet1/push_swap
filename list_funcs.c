@@ -1,0 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   list_funcs.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2026/11/10 15:56:50 by albarnet      #+#    #+#                 */
+/*   Updated: 2026/11/10 16:16:50 by albarnet      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void	ft_stckadd_front(t_stack **lst, t_stack *new)
+{
+	new->next = *lst;
+	*lst = new;
+}
+
+t_stack	*ft_stcklast(t_stack *lst)
+{
+	t_stack	*tmp;
+
+	tmp = lst;
+	if (lst == 0)
+		return (NULL);
+	while (tmp->next != NULL)
+	{
+		tmp = tmp->next;
+	}
+	return (tmp);
+}

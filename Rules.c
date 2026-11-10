@@ -6,7 +6,7 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 15:25:49 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/09 14:48:45 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/10 16:17:38 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ss(t_group *group)
 void	push(t_stack *dest, t_stack *src)
 {
 	if (src != NULL)
-		ft_lstadd_front(&dest, src);
+		ft_stckadd_front(&dest, src);
 }
 
 void	pa(t_group *group)
@@ -78,7 +78,7 @@ void	rotate(t_stack **stack)
 	first = *stack;
 	*stack = first->next;
 	first->next = NULL;
-	ft_lstadd_back(stack, first);
+	ft_stckadd_back(stack, first);
 }
 void	ra(t_group *group)
 {
@@ -108,13 +108,13 @@ void rrotate(t_stack **stack)
 	t_stack *new;
 	t_stack *tmp;
 	
-	new = ft_lstlast(*stack);
+	new = ft_stcklast(*stack);
 	tmp = *stack;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->next = NULL;
-	ft_lstlast(*stack)->next = NULL;
-	ft_lstadd_front(stack, new);
+	ft_stcklast(*stack)->next = NULL;
+	ft_stckadd_front(stack, new);
 }
 
 void rra(t_group *group)
