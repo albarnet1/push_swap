@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/10 12:39:04 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/10 13:28:31 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int main(int argc, char **argv)
 {
 	int i;
 	int mode;
+	int bench;
 	t_group		*stcks;
 	t_stack		*tmp;
 	t_stack		*current;
@@ -105,24 +106,26 @@ int main(int argc, char **argv)
 		return (0);
 	stcks->a = NULL;
 	stcks->b = NULL;
-	i = 2;
+	i = 1;
 	mode = 0;
+	bench = 0;
 	if (argc < 2)
 		return (0);
-	else if (ft_strncmp(argv[1], "--simple", 8) == 0)
-		mode = 1;
-	else if (ft_strncmp(argv[1], "--medium", 8) == 0)
-		mode = 2;
-	else if (ft_strncmp(argv[1], "--complex", 9) == 0)
-		mode = 3;
-	else if (ft_strncmp(argv[1], "--adaptive", 10) == 0)
-		mode = 4;
-	else 
+	if (ft_strncmp(argv[i], "--bench", 7) == 0)
 	{
-		if (argv[1] != NULL)
-			ft_printf("Error");
-		return (0);
+		bench = 1;
+		i = 2;
 	}
+	if (ft_strncmp(argv[i], "--simple", 8) == 0)
+		mode = 1;
+	else if (ft_strncmp(argv[i], "--medium", 8) == 0)
+		mode = 2;
+	else if (ft_strncmp(argv[i], "--complex", 9) == 0)
+		mode = 3;
+	else if (ft_strncmp(argv[i], "--adaptive", 10) == 0)
+		mode = 4;
+	if (mode != 0)
+		i++;
 	if (ft_fill_list(&(stcks->a), tmp, i, argc, argv) == 0)
 		return (0);
 	current = stcks->a;
@@ -136,5 +139,5 @@ int main(int argc, char **argv)
 	while (i < argc)
 		ft_printf("[%s]\n", argv[i++]);
 	ft_printf("{%d}", argc - 1);
-	algorithm()
+	//algorithm(mode, stcks, bench);
 }

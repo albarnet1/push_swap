@@ -6,14 +6,14 @@
 #    By: albarnet <albarnet@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2026/11/05 14:43:11 by albarnet      #+#    #+#                  #
-#    Updated: 2026/11/10 12:41:02 by albarnet      ########   odam.nl          #
+#    Updated: 2026/11/10 14:03:43 by albarnet      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 CC := cc
 CFLAGS := -Wall -Wextra -Werror
 NAME := push_swap
-NAME2 := push_swap.out
+# NAME2 := push_swap.out
 FTPRINTFSOURCES := ft_printf_libft/ft_printf.c \
 		ft_printf_libft/ft_putnbr_base.c \
 		ft_printf_libft/ft_putnbr_base_unsigned.c
@@ -42,8 +42,8 @@ all: $(NAME)
 $(NAME): $(OBJECTS)
 	ar rcs $(NAME) $(OBJECTS)
 
-%.o : %.c ft_printf_libft/ft_printf.a
-	$(CC) $(CFLAGS) -I./ft_printf_libft -I./ft_printf_libft/Libft -c $< -o $(NAME)
+# %.o : %.c ft_printf_libft/ft_printf.a
+# 	$(CC) $(CFLAGS) -I./ft_printf_libft -I./ft_printf_libft/Libft -c $< -o $(NAME)
 
 ft_printf_libft/ft_printf.a:
 	$(MAKE) -C $(dir $@)
@@ -72,5 +72,3 @@ aclean:
 	rm -f a.out
 
 re: fclean all
-
-bonus: all
