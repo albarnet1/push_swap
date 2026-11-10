@@ -6,7 +6,7 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 15:25:49 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/10 16:17:38 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/10 17:46:33 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,25 @@ void	ss(t_group *group)
 }
 
 // Push a/b: add top element to the other list front
-void	push(t_stack *dest, t_stack *src)
+t_stack *pop(t_stack **stack)
 {
-	if (src != NULL)
-		ft_stckadd_front(&dest, src);
+	t_stack *top;
+	
+	top = *stack;
+	*stack = top->next;
+	top->next = NULL;
+	return (*stack);
+}
+
+void	push(t_stack **dest, t_stack **src)
+{
+	t_stack *new;
+
+	if (src == NULL || *src == NULL)
+		return ;
+	new = *src;
+	*src  = pop(src);
+	ft_lstadd_front(dest, new);
 }
 
 void	pa(t_group *group)
@@ -71,15 +86,15 @@ void	pb(t_group *group)
 
 void	rotate(t_stack **stack)
 {
-	t_stack	*new;
 	t_stack *first;
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 		return ;
 	first = *stack;
 	*stack = first->next;
 	first->next = NULL;
-	ft_stckadd_back(stack, first);
+	ft_lstadd_back(stack, first);
 }
+
 void	ra(t_group *group)
 {
 	if (group != NULL)
@@ -108,13 +123,15 @@ void rrotate(t_stack **stack)
 	t_stack *new;
 	t_stack *tmp;
 	
-	new = ft_stcklast(*stack);
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+		return ;
+	new = ft_lstlast(*stack);
 	tmp = *stack;
-	while (tmp->next != NULL)
+	while (tmp->next->next != NULL)
 		tmp = tmp->next;
 	tmp->next = NULL;
-	ft_stcklast(*stack)->next = NULL;
-	ft_stckadd_front(stack, new);
+	ft_lstlast(*stack)->next = NULL;
+	ft_lstadd_front(stack, new);
 }
 
 void rra(t_group *group)
