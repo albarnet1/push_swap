@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/10 15:42:17 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/10 18:39:10 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	ft_fill_list(t_stack **a, t_stack *tmp, int i, int argc, char **argv)
 	return (1);
 }
 
+// To discuss: we can avoid -> if declare stacks directly and not via pointers
 int main(int argc, char **argv)
 {
 	int i;

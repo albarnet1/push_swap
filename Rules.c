@@ -6,7 +6,7 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 15:25:49 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/10 17:46:33 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/10 18:42:09 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,17 @@ void	swap(t_stack **stack)
 
 void	sa(t_group *group)
 {
+	
 	if (group != NULL)
 		swap(&group->a);
+	group->ops->sa++;
 }
 
 void	sb(t_group *group)
 {
 	if (group != NULL)
 		swap(&group->b);
+	group->ops->sb++;
 }
 
 void	ss(t_group *group)
@@ -46,6 +49,7 @@ void	ss(t_group *group)
 		swap(&group->a);
 		swap(&group->b);
 	}
+	group->ops->ss++;
 }
 
 // Push a/b: add top element to the other list front
@@ -74,12 +78,14 @@ void	pa(t_group *group)
 {
 	if (group != NULL)
 		push(group->a, group->b);
+	group->ops->pa++;
 }
 
 void	pb(t_group *group)
 {
 	if (group != NULL)
 		push(group->b, group->a);
+	group->ops->pb++;
 }
 
 // Rotate a/b: The first element becomes the last one.
@@ -99,12 +105,14 @@ void	ra(t_group *group)
 {
 	if (group != NULL)
 		rotate(&group->a);
+	group->ops->ra++;
 }
 
 void	rb(t_group *group)
 {
 	if (group != NULL)
 		rotate(&group->b);
+	group->ops->rb++;
 }
 
 void	rr(t_group *group)
@@ -114,6 +122,7 @@ void	rr(t_group *group)
 		rotate(&group->a);
 		rotate(&group->b);
 	}
+	group->ops->rr++;
 }
 
 // Rotate a/b in the reverse order: The last element becomes the first one.
@@ -138,12 +147,14 @@ void rra(t_group *group)
 {
 	if (group != NULL)
 		rrotate(&group->a);
+	group->ops->rra++;
 }
 
 void rrb(t_group *group)
 {
 	if (group != NULL)
 		rrotate(&group->b);
+	group->ops->rrb++;
 }
 
 void rrr(t_group *group)
@@ -151,5 +162,5 @@ void rrr(t_group *group)
 	if (group != NULL)
 		rrotate(&group->a);
 		rrotate(&group->b);
-		
+	group->ops->rrr++;
 }
