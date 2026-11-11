@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:18 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/10 18:25:00 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/11 16:08:51 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ typedef struct	s_group
 {
 	t_stack	*a; //pointer to the head node
 	t_stack	*b;
-	counter *ops;
+	t_counter *ops;
 }	t_group;
 
-typedef	struct counter_ops
+typedef	struct s_counter_ops
 {
 	int	sa;
 	int	sb;
@@ -42,7 +42,7 @@ typedef	struct counter_ops
 	int	rra;
 	int	rrb;
 	int	rrr;
-}	counter;
+}	t_counter;
 
 void	algorithm(int mode, t_group *stcks, int bench);
 
