@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/10 15:56:50 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/10 16:16:50 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/11 14:31:30 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,14 @@ t_stack	*ft_stcklast(t_stack *lst)
 		tmp = tmp->next;
 	}
 	return (tmp);
+}
+
+void	ft_delhead(t_stack **head)
+{
+	t_stack *tmp;
+	
+	tmp = *head;
+    tmp = tmp->next;
+    free(*head);
+    *head = tmp;
 }
