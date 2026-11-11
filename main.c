@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/11 16:04:29 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/11 16:23:54 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int main(int argc, char **argv)
 		return (0);
 	stcks->a = NULL;
 	stcks->b = NULL;
+	stcks->ops = malloc(sizeof(t_counter));
 	i = 1;
 	mode = 0;
 	bench = 0;
@@ -143,6 +144,13 @@ int main(int argc, char **argv)
 	algorithm(mode, stcks, bench);
 	ft_printf("\n");
 	current = stcks->a;
+	while (current)
+	{
+		ft_printf("%d ", current->number);
+		current = current->next;
+	}
+	ft_printf("\n");
+	current = stcks->b;
 	while (current)
 	{
 		ft_printf("%d ", current->number);

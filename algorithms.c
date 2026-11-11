@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/10 12:11:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/11 15:54:33 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/11 16:21:46 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int ft_simple(t_group *stcks)
 				pnbr = tmp->number;
 				j = i;
 			}
-			// if (tmp->next != NULL)
 			tmp = tmp->next;
 			i++;
 		}
@@ -43,7 +42,7 @@ int ft_simple(t_group *stcks)
 		{
 			rra(stcks);
 			tmp2 = stcks->a;
-			// while (j-- > 0)
+			// while (j > 0)
 			// {
 			// 	printf("%i ", tmp2->number);
 			// 	tmp2 = tmp2->next;

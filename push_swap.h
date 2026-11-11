@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:18 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/11 16:08:51 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/11 16:10:54 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,6 @@ typedef struct	s_stack
 	int				number;
 	struct s_stack	*next;
 }	t_stack;
-
-typedef struct	s_group
-{
-	t_stack	*a; //pointer to the head node
-	t_stack	*b;
-	t_counter *ops;
-}	t_group;
 
 typedef	struct s_counter_ops
 {
@@ -44,6 +37,15 @@ typedef	struct s_counter_ops
 	int	rrr;
 }	t_counter;
 
+typedef struct	s_group
+{
+	t_stack	*a; //pointer to the head node
+	t_stack	*b;
+	t_counter *ops;
+}	t_group;
+
+
+
 void	algorithm(int mode, t_group *stcks, int bench);
 
 void	ft_stckadd_front(t_stack **lst, t_stack *new);
@@ -54,7 +56,7 @@ void	swap(t_stack **stack);
 void	sa(t_group *group);
 void	sb(t_group *group);
 void	ss(t_group *group);
-void	push(t_stack *dest, t_stack *src);
+void	push(t_stack **dest, t_stack **src);
 void	pa(t_group *group);
 void	pb(t_group *group);
 void	rotate(t_stack **stack);
