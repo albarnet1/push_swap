@@ -6,11 +6,12 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 15:25:49 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/11 16:12:58 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/11 18:36:21 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 // Swap a/b: go to the second element and put it in front. Do nothing if there is only one or no elements. 
 void	swap(t_stack **stack)
@@ -160,7 +161,73 @@ void rrb(t_group *group)
 void rrr(t_group *group)
 {
 	if (group != NULL)
+	{
 		rrotate(&group->a);
 		rrotate(&group->b);
+	}
 	group->ops->rrr++;
 }
+
+/* void	print_stack(t_stack *stack)
+{
+	while (stack != NULL)
+	{
+		printf("%i ", stack->number);
+		stack = stack->next;
+	}
+	printf("\n");
+}
+
+void	print_group(t_group group)
+{
+	printf("stack_a:\n");
+	print_stack(group.a);
+	printf("stack_b:\n");
+	print_stack(group.b);
+	printf("\n");
+}
+
+int	main(void)
+{
+	t_stack a_third = {30, NULL};
+	t_stack a_second = {20, &a_third};
+	t_stack a_first = {10, &a_second};
+
+	t_stack *b_first = NULL;
+	t_counter	ops = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	t_group group = {&a_first, b_first, &ops};
+
+	int i = 128;
+	int runs = i;
+	
+	while (i>0)
+	{
+		sa(&group);
+		sb(&group);
+		ss(&group);
+		pa(&group);
+		pb(&group);
+		ra(&group);
+		rb(&group);
+		rr(&group);
+		rra(&group);
+		rrb(&group);
+		rrr(&group);
+		i--;
+	}
+
+	printf("sa:%i\n", group.ops->sa);
+	printf("sb:%i\n", group.ops->sb);
+	printf("ss:%i\n", group.ops->ss);
+	printf("pa:%i\n", group.ops->pa);
+	printf("pb:%i\n", group.ops->pb);
+	printf("ra:%i\n", group.ops->ra);
+	printf("rb:%i\n", group.ops->rb);
+	printf("rr:%i\n", group.ops->rr);
+	printf("rra:%i\n", group.ops->rra);
+	printf("rrb:%i\n", group.ops->rrb);
+	printf("rrr:%i\n", group.ops->rrr);
+
+	printf(".. Runs out of %i runs", runs);
+}
+ */
