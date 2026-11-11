@@ -6,7 +6,7 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/09 15:16:12 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/10 14:53:32 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/10 17:13:29 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,8 @@ int	main(void)
 	t_stack a_second = {20, &a_third};
 	t_stack a_first = {10, &a_second};
 
-	t_stack b_first = {10, NULL};
-	t_group group = {&a_first, &b_first};
+	t_stack *b_first = NULL;
+	t_group group = {&a_first, b_first};
 
 	printf("stack_a:\n");
 	print_stack(group.a);
@@ -150,7 +150,7 @@ int	main(void)
 	print_stack(group.b);
 	printf("\n");
 	
-	push(&group.a, &group.b);
+	push(&group.b, &group.a);
 	printf("Push:\n");
 	printf("stack_a:\n");
 	print_stack(group.a);
@@ -158,7 +158,7 @@ int	main(void)
 	print_stack(group.b);
 	printf("\n");
 	
-/* 	push(&group.b, &group.a);
+	push(&group.b, &group.a);
 	printf("Push:\n");
 	printf("stack_a:\n");
 	print_stack(group.a);
@@ -190,5 +190,5 @@ int	main(void)
 	print_stack(group.a);
 	printf("stack_b:\n");
 	print_stack(group.b);
-	printf("\n"); */
+	printf("\n");
 }
