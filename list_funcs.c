@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/10 15:56:50 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/11 17:11:23 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/12 18:02:29 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,21 @@ void	ft_stckadd_back(t_stack **lst, t_stack *new)
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->next = new;
+}
+
+int	ft_stcksize(t_stack *lst)
+{
+	t_stack	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = lst;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	return (i);
 }
 
 void	ft_delhead(t_stack **head)

@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:18 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/12 17:32:35 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/12 18:07:38 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ void	algorithm(int mode, t_group *stcks, int bench);
 
 void	ft_stckadd_front(t_stack **lst, t_stack *new);
 void	ft_stckadd_back(t_stack **lst, t_stack *new);
+int		ft_stcksize(t_stack *lst);
 t_stack	*ft_stcklast(t_stack *lst);
+t_stack	*pop(t_stack **stack);
 
 void	swap(t_stack **stack);
 void	sa(t_group *group);
