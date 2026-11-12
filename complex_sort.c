@@ -6,48 +6,118 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/12 12:56:43 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/12 14:35:46 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/12 17:54:20 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ft_complex(t_group *stcks)
+int ft_nodecount(t_stack *stack)
 {
-	t_stack	*tmp;
-	int pnbr;
+	int i;
+
+	i = 0;
+	while (stack != NULL)
+	{
+		stack = stack->next;
+		i++;
+	}
+	return (i);
+}
+
+int *ft_convertarr(t_stack *stack, int size)
+{
+	int *numbers;
+	int i;
+
+	i = 0;
+	numbers = (int *)malloc(sizeof(int) * size);
+	while (i < size)
+	{
+		numbers[i++] = stack->number;
+		stack = stack->next;
+	}
+	return (numbers);
+}
+
+void ft_sortarr(int *numbers)
+{
+	int tmp;
 	int i;
 	int j;
 
+	i = 0;
 	j = 0;
+	while (numbers[i])
+	{
+		while (numbers[j])
+		{
+			if (i != j && numbers[j] > numbers[i])
+			{
+				tmp = numbers[j];
+				numbers[j] = numbers[i];
+				numbers[i] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void ft_match_index(t_group *stcks, int *numbers, int size)
+{
+	t_stack	*tmp;
+	int i;
+	int j;
+
 	i = 0;
 	tmp = stcks->a;
-	while (stcks->a != NULL)
-	{
-		j = 0;
-		i = 0;
-		pnbr = tmp->number % 10;
-		while (tmp != NULL)
-		{
-			if (pnbr > tmp->number % 10)
-			{
-				pnbr = tmp->number % 10;
-				j = i;
-			}
-			tmp = tmp->next;
-			i++;
-		}
-		while (j-- > 0)
-		{
-			ra(stcks);
-		}
-		pb(stcks);
-		tmp = stcks->a;
-	}
-	tmp = stcks->b;
 	while (tmp != NULL)
 	{
-		pa(stcks);
-		tmp = stcks->b;
+		j = 0;
+		while (j < size)
+		{
+			if (numbers[j] == tmp->number)
+				tmp->rank = j;
+			j++;
+		}
+		tmp = tmp->next;
+	}
+}
+
+void ft_complex(t_group *stcks)
+{
+	int i;
+	int j;
+	int size;
+	int *intarr;
+
+	size = ft_nodecount(stcks->a);
+	intarr = ft_convertarr(stcks, size);
+	if (!intarr)
+		return ;
+	ft_sortarr(intarr);
+	ft_match_index(stcks, intarr, size);
+	i = 0;
+	j = 0;
+	// max_rank
+	int cnt = 0;
+	while ((123 >> cnt) != 0)
+		cnt++;
+	ft_printf("%d", cnt);
+	while (i < cnt)
+	{
+		j = 0;
+		while (j < size)
+		{
+			if ((stcks->a->rank >> i) & 1)
+				ra(stcks);
+			else
+				pb(stcks);
+			j++;
+		}
+		while (stcks->b != NULL)
+			pa(stcks);
+		i++;
 	}
 }

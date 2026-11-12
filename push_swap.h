@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:18 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/12 14:35:25 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/12 17:32:35 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 typedef struct	s_stack
 {
 	int				number;
+	int				rank;
 	struct s_stack	*next;
 }	t_stack;
 
