@@ -15,7 +15,7 @@ The project teaches:
 ## sorting algorithms and reasoning
 - for the simple algorithm we used selection sort because ...
 -
--
+- for the complex algorithm we used radix sort adaptation LSD because ...
 -
 
 ## Contents

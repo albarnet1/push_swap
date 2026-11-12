@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/11 16:23:54 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/12 12:32:54 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,22 @@ int	ft_isnum(char *s)
 	return (1);
 }
 
-void	ft_stckadd_back(t_stack **lst, t_stack *new)
-{
-	t_stack	*tmp;
+// void	ft_stckadd_back(t_stack **lst, t_stack *new)
+// {
+// 	t_stack	*tmp;
 
-	if (!lst || !new)
-		return ;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	tmp = *lst;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = new;
-}
+// 	if (!lst || !new)
+// 		return ;
+// 	if (!*lst)
+// 	{
+// 		*lst = new;
+// 		return ;
+// 	}
+// 	tmp = *lst;
+// 	while (tmp->next != NULL)
+// 		tmp = tmp->next;
+// 	tmp->next = new;
+// }
 
 int	ft_fill_list(t_stack **a, t_stack *tmp, int i, int argc, char **argv)
 {
@@ -150,10 +150,4 @@ int main(int argc, char **argv)
 		current = current->next;
 	}
 	ft_printf("\n");
-	current = stcks->b;
-	while (current)
-	{
-		ft_printf("%d ", current->number);
-		current = current->next;
-	}
 }

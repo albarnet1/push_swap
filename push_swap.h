@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:18 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/11 16:10:54 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/12 14:35:25 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct	s_group
 
 
 
+void	ft_complex(t_group *stcks);
 void	algorithm(int mode, t_group *stcks, int bench);
 
 void	ft_stckadd_front(t_stack **lst, t_stack *new);
@@ -67,5 +68,6 @@ void	rrotate(t_stack **stack);
 void	rra(t_group *group);
 void	rrb(t_group *group);
 void	rrr(t_group *group);
+
 
 #endif
