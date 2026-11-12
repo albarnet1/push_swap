@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/12 12:56:43 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/12 17:54:20 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/12 18:08:56 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int *ft_convertarr(t_stack *stack, int size)
 	return (numbers);
 }
 
-void ft_sortarr(int *numbers)
+void ft_sortarr(int *numbers, int size)
 {
 	int tmp;
 	int i;
@@ -50,6 +50,7 @@ void ft_sortarr(int *numbers)
 	j = 0;
 	while (numbers[i])
 	{
+		j = 0;
 		while (numbers[j])
 		{
 			if (i != j && numbers[j] > numbers[i])
@@ -93,16 +94,16 @@ void ft_complex(t_group *stcks)
 	int *intarr;
 
 	size = ft_nodecount(stcks->a);
-	intarr = ft_convertarr(stcks, size);
+	intarr = ft_convertarr(stcks->a, size);
 	if (!intarr)
 		return ;
-	ft_sortarr(intarr);
+	ft_sortarr(intarr, size);
 	ft_match_index(stcks, intarr, size);
 	i = 0;
 	j = 0;
 	// max_rank
 	int cnt = 0;
-	while ((123 >> cnt) != 0)
+	while (((size - 1) >> cnt) != 0)
 		cnt++;
 	ft_printf("%d", cnt);
 	while (i < cnt)

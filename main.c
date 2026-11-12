@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/12 17:35:24 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/12 18:14:11 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ int main(int argc, char **argv)
 		mode = 3;
 	else if (ft_strncmp(argv[i], "--adaptive", 10) == 0)
 		mode = 4;
+	if (mode != 0 && bench == 1 && argc == 3)
+		return (0);
 	if (mode != 0)
 		i++;
 	if (ft_fill_list(&(stcks->a), tmp, i, argc, argv) == 0)
