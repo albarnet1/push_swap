@@ -6,19 +6,19 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/13 10:42:24 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/13 16:16:18 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/13 16:21:13 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-int	ft_compute_disorder(t_stack *stck_a)
+double	ft_compute_disorder(t_stack *stck_a)
 {
-	int		mistakes;
-	int		total_pairs;
-	int	i;
-	int	j;
+	double	mistakes;
+	double	total_pairs;
+	int		i;
+	int		j;
 	t_stack	*tmp;
 
 	mistakes = 0;
@@ -42,34 +42,37 @@ int	ft_compute_disorder(t_stack *stck_a)
 	return (mistakes / total_pairs);
 }
 
-// int main(void)
-// {
-// 	int arr[] = {0, 1, 2, 3, 4, 5, 6, 7};
-// 	t_stack *a;
-// 	t_stack *next;
-// 	int i = 0;
+/* int main(void)
+{
+	int arr[] = {1, 6, 3, 5, -9999};
+	t_stack *a;
+	t_stack *next;
+	int i = 0;
 	
-// 	t_stack *tmp = NULL;
-// 	a = tmp;
-// 	while (i < 8)
-// 	{
-// 		tmp = malloc(sizeof(t_stack));
-// 		tmp->next = malloc(sizeof(t_stack));
-// 		if (!tmp)
-// 			return (1);
-// 		tmp->number = arr[i];
-// 		tmp->next = NULL;
-// 		ft_stckadd_back((&a), tmp);
-// 		i++;
-// 	}
+	t_stack *tmp = NULL;
+	a = tmp;
+	while (arr[i] != -9999)
+	{
+		tmp = malloc(sizeof(t_stack));
+		tmp->next = malloc(sizeof(t_stack));
+		if (!tmp)
+			return (1);
+		tmp->number = arr[i];
+		tmp->next = NULL;
+		ft_stckadd_back((&a), tmp);
+		i++;
+	}
 
-// 	while (a != NULL)
-// 	{
-//     	next = a->next;
-// 		printf("%i ", a->number);
-//     	free(a);
-//     	a = next;
-// 	}
+	printf("Disorder: %f\n", ft_compute_disorder(a));
 
-// 	return (0);
-// }
+	while (a != NULL)
+	{
+    	next = a->next;
+		printf("%i ", a->number);
+    	free(a);
+    	a = next;
+	}
+
+	return (0);
+}
+*/
