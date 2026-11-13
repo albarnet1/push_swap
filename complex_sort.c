@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/12 12:56:43 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/12 18:08:56 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/13 15:33:07 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void ft_match_index(t_group *stcks, int *numbers, int size)
 	}
 }
 
-void ft_complex(t_group *stcks)
+void ft_complex(t_group *stcks, int bench)
 {
 	int i;
 	int j;
@@ -105,20 +105,19 @@ void ft_complex(t_group *stcks)
 	int cnt = 0;
 	while (((size - 1) >> cnt) != 0)
 		cnt++;
-	ft_printf("%d", cnt);
 	while (i < cnt)
 	{
 		j = 0;
 		while (j < size)
 		{
 			if ((stcks->a->rank >> i) & 1)
-				ra(stcks);
+				ra(stcks, bench);
 			else
-				pb(stcks);
+				pb(stcks, bench);
 			j++;
 		}
 		while (stcks->b != NULL)
-			pa(stcks);
+			pa(stcks, bench);
 		i++;
 	}
 }

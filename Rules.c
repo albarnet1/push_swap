@@ -6,7 +6,7 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 15:25:49 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/11 18:36:21 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/13 15:31:59 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,26 @@ void	swap(t_stack **stack)
 	*stack = second;
 }
 
-void	sa(t_group *group)
+void	sa(t_group *group, int bench)
 {
 	
 	if (group != NULL)
 		swap(&group->a);
 	group->ops->sa++;
+	if (bench == 0)
+		ft_printf("sa\n");
 }
 
-void	sb(t_group *group)
+void	sb(t_group *group, int bench)
 {
 	if (group != NULL)
 		swap(&group->b);
 	group->ops->sb++;
+	if (bench == 0)
+		ft_printf("sb\n");
 }
 
-void	ss(t_group *group)
+void	ss(t_group *group, int bench)
 {
 	if (group != NULL)
 	{
@@ -51,6 +55,8 @@ void	ss(t_group *group)
 		swap(&group->b);
 	}
 	group->ops->ss++;
+	if (bench == 0)
+		ft_printf("ss\n");
 }
 
 // Push a/b: add top element to the other list front
@@ -75,18 +81,22 @@ void	push(t_stack **dest, t_stack **src)
 	ft_stckadd_front(dest, new);
 }
 
-void	pa(t_group *group)
+void	pa(t_group *group, int bench)
 {
 	if (group != NULL)
 		push(&group->a, &group->b);
 	group->ops->pa++;
+	if (bench == 0)
+		ft_printf("pa\n");
 }
 
-void	pb(t_group *group)
+void	pb(t_group *group, int bench)
 {
 	if (group != NULL)
 		push(&group->b, &group->a);
 	group->ops->pb++;
+	if (bench == 0)
+		ft_printf("pb\n");
 }
 
 // Rotate a/b: The first element becomes the last one.
@@ -102,21 +112,25 @@ void	rotate(t_stack **stack)
 	ft_stckadd_back(stack, first);
 }
 
-void	ra(t_group *group)
+void	ra(t_group *group, int bench)
 {
 	if (group != NULL)
 		rotate(&group->a);
 	group->ops->ra++;
+	if (bench == 0)
+		ft_printf("ra\n");
 }
 
-void	rb(t_group *group)
+void	rb(t_group *group, int bench)
 {
 	if (group != NULL)
 		rotate(&group->b);
 	group->ops->rb++;
+	if (bench == 0)
+		ft_printf("rb\n");
 }
 
-void	rr(t_group *group)
+void	rr(t_group *group, int bench)
 {
 	if (group != NULL)
 	{
@@ -124,6 +138,8 @@ void	rr(t_group *group)
 		rotate(&group->b);
 	}
 	group->ops->rr++;
+	if (bench == 0)
+		ft_printf("rr\n");
 }
 
 // Rotate a/b in the reverse order: The last element becomes the first one.
@@ -144,21 +160,25 @@ void rrotate(t_stack **stack)
 	ft_stckadd_front(stack, new);
 }
 
-void rra(t_group *group)
+void rra(t_group *group, int bench)
 {
 	if (group != NULL)
 		rrotate(&group->a);
 	group->ops->rra++;
+	if (bench == 0)
+		ft_printf("rra\n");
 }
 
-void rrb(t_group *group)
+void rrb(t_group *group, int bench)
 {
 	if (group != NULL)
 		rrotate(&group->b);
 	group->ops->rrb++;
+	if (bench == 0)
+		ft_printf("rrb\n");
 }
 
-void rrr(t_group *group)
+void rrr(t_group *group, int bench)
 {
 	if (group != NULL)
 	{
@@ -166,6 +186,8 @@ void rrr(t_group *group)
 		rrotate(&group->b);
 	}
 	group->ops->rrr++;
+	if (bench == 0)
+		ft_printf("rrr\n");
 }
 
 /* void	print_stack(t_stack *stack)

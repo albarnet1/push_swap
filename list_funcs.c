@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/10 15:56:50 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/12 18:02:29 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/13 13:59:22 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,19 @@ int	ft_stcksize(t_stack *lst)
 	return (i);
 }
 
-void	ft_delhead(t_stack **head)
+int	ft_free(t_stack **stck)
 {
-	t_stack *tmp;
-	
-	tmp = *head;
-    tmp = tmp->next;
-    free(*head);
-    *head = tmp;
+	t_stack	*tmp;
+	if (!stck || !*stck)
+		return (0);
+	while (*stck)
+	{
+		tmp = (*stck)->next;
+		free(*stck);
+		*stck = tmp;
+	}
+	free(*stck);
+	*stck = NULL;
+	stck = NULL;
+	return (0);
 }

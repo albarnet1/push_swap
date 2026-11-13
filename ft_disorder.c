@@ -6,7 +6,7 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/13 10:42:24 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/13 13:14:25 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/13 16:16:18 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,34 +42,34 @@ int	ft_compute_disorder(t_stack *stck_a)
 	return (mistakes / total_pairs);
 }
 
-int main(void)
-{
-	int arr[] = {0, 1, 2, 3, 4, 5, 6, 7};
-	t_stack *a;
-	t_stack *next;
-	int i = 0;
+// int main(void)
+// {
+// 	int arr[] = {0, 1, 2, 3, 4, 5, 6, 7};
+// 	t_stack *a;
+// 	t_stack *next;
+// 	int i = 0;
 	
-	t_stack *tmp = NULL;
-	a = tmp;
-	while (i < 8)
-	{
-		tmp = malloc(sizeof(t_stack));
-		tmp->next = malloc(sizeof(t_stack));
-		if (!tmp)
-			return (1);
-		tmp->number = arr[i];
-		tmp->next = NULL;
-		ft_stckadd_back((&a), tmp);
-		i++;
-	}
+// 	t_stack *tmp = NULL;
+// 	a = tmp;
+// 	while (i < 8)
+// 	{
+// 		tmp = malloc(sizeof(t_stack));
+// 		tmp->next = malloc(sizeof(t_stack));
+// 		if (!tmp)
+// 			return (1);
+// 		tmp->number = arr[i];
+// 		tmp->next = NULL;
+// 		ft_stckadd_back((&a), tmp);
+// 		i++;
+// 	}
 
-	while (a != NULL)
-	{
-    	next = a->next;
-		printf("%i ", a->number);
-    	free(a);
-    	a = next;
-	}
+// 	while (a != NULL)
+// 	{
+//     	next = a->next;
+// 		printf("%i ", a->number);
+//     	free(a);
+//     	a = next;
+// 	}
 
-	return (0);
-}
+// 	return (0);
+// }

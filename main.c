@@ -6,31 +6,11 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/12 18:14:11 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/13 16:18:10 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-// #include "libft.h"
-// #include "ft_printf.h"
-
-int	ft_free(t_stack **stck)
-{
-	t_stack	*tmp;
-	if (!stck || !*stck)
-		return (0);
-	while (*stck)
-	{
-		tmp = (*stck)->next;
-		free(*stck);
-		*stck = tmp;
-	}
-	// free((*stck)->number);
-	free(*stck);
-	*stck = NULL;
-	stck = NULL;
-	return (0);
-}
 
 int	ft_isnum(char *s)
 {
@@ -51,23 +31,6 @@ int	ft_isnum(char *s)
 	}
 	return (1);
 }
-
-// void	ft_stckadd_back(t_stack **lst, t_stack *new)
-// {
-// 	t_stack	*tmp;
-
-// 	if (!lst || !new)
-// 		return ;
-// 	if (!*lst)
-// 	{
-// 		*lst = new;
-// 		return ;
-// 	}
-// 	tmp = *lst;
-// 	while (tmp->next != NULL)
-// 		tmp = tmp->next;
-// 	tmp->next = new;
-// }
 
 int	ft_fill_list(t_stack **a, t_stack *tmp, int i, int argc, char **argv)
 {
@@ -92,12 +55,58 @@ int	ft_fill_list(t_stack **a, t_stack *tmp, int i, int argc, char **argv)
 	return (1);
 }
 
+int	ft_sum_operations(t_counter *stcks)
+{
+	int res;
+	
+	res = 0;
+	res += stcks->sa;
+	res += stcks->sb;
+	res += stcks->ss;
+	res += stcks->pa;
+	res += stcks->pb;
+	res += stcks->ra;
+	res += stcks->rb;
+	res += stcks->rr;
+	res += stcks->rra;
+	res += stcks->rrb;
+	res += stcks->rrr;
+	return (res);
+}
+
+void	ft_bench(t_group *stcks, int bench, int mode, double disorder)
+{
+	char c[21];
+	t_counter *tmp;
+
+	tmp = stcks->ops;
+	if (bench == 1)
+	{
+		if (mode == 1)
+			ft_strlcpy(c, "Simple / O(n^2)", 16);
+		if (mode == 2)
+			ft_strlcpy(c, "Medium / O(n√n)", 18);
+		if (mode == 3)
+			ft_strlcpy(c, "Complex / O(n log n)", 21);
+		if (mode == 4)
+			ft_strlcpy(c, "Adaptive / ", 12);
+		ft_printf("[bench] disorder:	%d%%\n", disorder);
+		ft_printf("[bench] strategy: %s\n", c);
+		ft_printf("[bench] total_ops: %d\n", ft_sum_operations(tmp));
+		ft_printf("[bench] sa:	%i	sb:	%i	ss:	%i", tmp->sa, tmp->sb, tmp->ss);
+		ft_printf("	pa:	%i	pb:	%i	\n", tmp->pa, tmp->pb);
+		ft_printf("[bench] ra:	%i	rb:	%i	rra:	%i", tmp->ra, tmp->rb, tmp->rra);
+		ft_printf("	rrb:	%i	rrr:	%i	\n", tmp->rrb, tmp->rrr);
+	}
+}
+
 // To discuss: we can avoid -> if declare stacks directly and not via pointers
 int main(int argc, char **argv)
 {
 	int i;
 	int mode;
 	int bench;
+	double	disorder;
 	t_group		*stcks;
 	t_stack		*tmp;
 	t_stack		*current;
@@ -132,24 +141,27 @@ int main(int argc, char **argv)
 		i++;
 	if (ft_fill_list(&(stcks->a), tmp, i, argc, argv) == 0)
 		return (0);
-	current = stcks->a;
-	while (current)
-	{
-		ft_printf("%d ", current->number);
-		current = current->next;
-	}
-	ft_printf("\n");
+	disorder = ft_compute_disorder(stcks->a);
+	// current = stcks->a;
+	// while (current)
+	// {
+	// 	ft_printf("%d ", current->number);
+	// 	current = current->next;
+	// }
+	// ft_printf("\n");
 	i = 1;
-	while (i < argc)
-		ft_printf("[%s]\n", argv[i++]);
-	ft_printf("{%d}", argc - 1);
+	// while (i < argc)
+	// 	ft_printf("[%s]\n", argv[i++]);
+	// ft_printf("{%d}", argc - 1);
+	//ft_printf("\n");
 	algorithm(mode, stcks, bench);
-	ft_printf("\n");
-	current = stcks->a;
-	while (current)
-	{
-		ft_printf("%d ", current->number);
-		current = current->next;
-	}
-	ft_printf("\n");
+	// ft_printf("\n");
+	// current = stcks->a;
+	// while (current)
+	// {
+	// 	ft_printf("%d ", current->number);
+	// 	current = current->next;
+	// }
+	// ft_printf("\n");
+	ft_bench(stcks, bench, mode, disorder);
 }

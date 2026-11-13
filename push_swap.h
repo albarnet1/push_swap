@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:18 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/12 18:07:38 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/13 16:14:13 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct	s_group
 
 
 
-void	ft_complex(t_group *stcks);
+void	ft_complex(t_group *stcks, int bench);
 void	algorithm(int mode, t_group *stcks, int bench);
 
 void	ft_stckadd_front(t_stack **lst, t_stack *new);
@@ -55,22 +55,24 @@ void	ft_stckadd_back(t_stack **lst, t_stack *new);
 int		ft_stcksize(t_stack *lst);
 t_stack	*ft_stcklast(t_stack *lst);
 t_stack	*pop(t_stack **stack);
+int		ft_compute_disorder(t_stack *stck_a);
 
 void	swap(t_stack **stack);
-void	sa(t_group *group);
-void	sb(t_group *group);
-void	ss(t_group *group);
+void	sa(t_group *group, int bench);
+void	sb(t_group *group, int bench);
+void	ss(t_group *group, int bench);
 void	push(t_stack **dest, t_stack **src);
-void	pa(t_group *group);
-void	pb(t_group *group);
+void	pa(t_group *group, int bench);
+void	pb(t_group *group, int bench);
 void	rotate(t_stack **stack);
-void	ra(t_group *group);
-void	rb(t_group *group);
-void	rr(t_group *group);
+void	ra(t_group *group, int bench);
+void	rb(t_group *group, int bench);
+void	rr(t_group *group, int bench);
 void	rrotate(t_stack **stack);
-void	rra(t_group *group);
-void	rrb(t_group *group);
-void	rrr(t_group *group);
+void	rra(t_group *group, int bench);
+void	rrb(t_group *group, int bench);
+void	rrr(t_group *group, int bench);
+int		ft_free(t_stack **stck);
 
 
 #endif
