@@ -6,19 +6,19 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/13 10:42:24 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/13 13:14:25 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/13 13:54:30 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-int	ft_compute_disorder(t_stack *stck_a)
+double	ft_compute_disorder(t_stack *stck_a)
 {
-	int		mistakes;
-	int		total_pairs;
-	int	i;
-	int	j;
+	double	mistakes;
+	double	total_pairs;
+	int		i;
+	int		j;
 	t_stack	*tmp;
 
 	mistakes = 0;
@@ -42,16 +42,16 @@ int	ft_compute_disorder(t_stack *stck_a)
 	return (mistakes / total_pairs);
 }
 
-int main(void)
+/* int main(void)
 {
-	int arr[] = {0, 1, 2, 3, 4, 5, 6, 7};
+	int arr[] = {1, 6, 3, 5, -9999};
 	t_stack *a;
 	t_stack *next;
 	int i = 0;
 	
 	t_stack *tmp = NULL;
 	a = tmp;
-	while (i < 8)
+	while (arr[i] != -9999)
 	{
 		tmp = malloc(sizeof(t_stack));
 		tmp->next = malloc(sizeof(t_stack));
@@ -63,6 +63,8 @@ int main(void)
 		i++;
 	}
 
+	printf("Disorder: %f\n", ft_compute_disorder(a));
+
 	while (a != NULL)
 	{
     	next = a->next;
@@ -73,3 +75,4 @@ int main(void)
 
 	return (0);
 }
+*/
