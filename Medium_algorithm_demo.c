@@ -6,7 +6,7 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/16 11:14:34 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/16 14:00:32 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/16 16:15:58 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,30 +225,26 @@ int ft_sqrt(int n)
 
 int max(t_stack *stck)
 {
-	int max;
-
-	max = INT_MIN;
-	while (stck->next != NULL)
+	int pnbr = stck->number;
+	while (stck != NULL)
 	{
-		if (stck->number > max)
-			max = stck->number;
-		stck = stck -> next;
+		if (pnbr < stck->number)
+			pnbr = stck->number;
+		stck = stck->next;
 	}
-	return (max);
+	return(pnbr);
 }
 
 int min(t_stack *stck)
 {
-	int min;
-
-	min = INT_MAX;
-	while (stck->next != NULL)
+	int pnbr = stck->number;
+	while (stck != NULL)
 	{
-		if (stck->number < min)
-			min = stck->number;
-		stck = stck -> next;
+		if (pnbr > stck->number)
+			pnbr = stck->number;
+		stck = stck->next;
 	}
-	return (min);
+	return(pnbr);
 }
 
 t_stack *fill_stack(t_stack *a, int *arr)
@@ -273,7 +269,8 @@ t_stack *fill_stack(t_stack *a, int *arr)
 
 int main(void)
 {
-	int arr[] = {2, 5, 9, 37, 12, 58, 44, 23, 61, 18, 50, 31, 47, 26, 55, 14, -9999};
+	//int arr[] = {2, 5, 9, 37, 12, 58, 44, 23, 61, 18, 50, 31, 47, 26, 55, 14, -9999};
+	int arr[] = {1, 2, 3, 0, -9999};
 	t_stack *a = NULL;
 	t_stack *b = NULL;
 	t_counter	ops = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -281,33 +278,45 @@ int main(void)
 	a = fill_stack(a, arr);
 	t_group group = {a, b, &ops};
 	
-	printf("stack_a:\n");
-	print_stack(group.a);
-	printf("stack_b:\n");
-	print_stack(group.b);
-	printf("\n");
-	
 	int bench = 1;
 	int len = ft_stcksize(group.a);
-	int ind = ft_sqrt(len);
-	int stck_min = min(group.a);
-	int stck_max = max(group.a);
-	int width = (stck_max - stck_min + 1)/ind;
-	int remaining = len;
-	
-	while (remaining-- > 0 && group.a->next != NULL)
+	int ind = ft_sqrt(len); printf("IND: %i\n", ind);
+	int stck_min = min(group.a); printf("MIN: %i\n", stck_min);
+	int stck_max = max(group.a); printf("MAX: %i\n", stck_max);
+	int width = (stck_max - stck_min + 1)/ind; printf("WIDTH: %i\n", width);
+	int i = ind + 1;
+	int remaining;
+	while (i >= 0)
 	{
-		if (((group.a->number - stck_min)/width) == 0)
-		{
-			
-			pb(&group, bench);
-			printf("stack_a:\n");
-			print_stack(group.a);
-			printf("stack_b:\n");
-			print_stack(group.b);
-		}
-		else
-			ra(&group, bench);	
+		printf("Bucket: %i\n", i);
+		remaining = len;
+			while (remaining-- > 0 && group.a != NULL)
+			{
+				if (((group.a->number - stck_min)/width) == i)
+				{
+					pb(&group, bench);
+					printf("stack_a:\n");
+					print_stack(group.a);
+					printf("stack_b:\n");
+					print_stack(group.b);
+				}
+				else
+				{
+					ra(&group, bench);
+					printf("stack_a:\n");
+					print_stack(group.a);
+					printf("stack_b:\n");
+					print_stack(group.b);
+				}
+			}
+			while (group.b != NULL)
+			{
+				if (group.b->number == max(group.b))
+					pa(&group, bench);
+				else
+					rb(&group, bench);
+			}
+		i--;
 	}
 	
 	// push(&group.b, &group.a);
@@ -356,7 +365,6 @@ int main(void)
 	while (a != NULL)
 	{
     	next = a->next;
-		printf("%i ", a->number);
     	free(a);
     	a = next;
 	}
