@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/13 16:18:10 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/16 18:35:49 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,24 @@ int	ft_isnum(char *s)
 int	ft_fill_list(t_stack **a, t_stack *tmp, int i, int argc, char **argv)
 {
 	int nbr;
+	char **splitted;
+	int j;
 
+	j = 0;
 	nbr = 0;
+	if (!argv[i])
+		return (0);
+	j = i;
+	while (argv[argc - 1][0] == '\0')
+	{
+		argc--;
+	}
+	while (strncmp(argv[j++], "", 1) == 0 && i != argc)
+	{
+		if (j == argc)
+			return (0);
+	}
+	j = 0;
 	while (i < argc)
 	{
 		if (ft_isnum(argv[i]) == 0)
@@ -44,13 +60,23 @@ int	ft_fill_list(t_stack **a, t_stack *tmp, int i, int argc, char **argv)
 			ft_printf("Error\n");
 			return (ft_free((a)));
 		}
-		tmp = malloc(sizeof(t_stack));
-		if (!tmp)
+		if (strncmp(argv[i], "", 1) == 0 && i < argc)
+			i++;
+		splitted = ft_split(argv[i++], ' ');
+		if (!splitted)
 			return (0);
-		nbr = ft_atoi(argv[i++]);
-		tmp->number = nbr;
-		tmp->next = NULL;
-		ft_stckadd_back((a), tmp);
+		while (splitted[j] != NULL)
+		{
+			tmp = malloc(sizeof(t_stack));
+			if (!tmp)
+				return (0);
+			nbr = ft_atoi(splitted[j++]);
+			tmp->number = nbr;
+			tmp->next = NULL;
+			ft_stckadd_back((a), tmp);
+		}
+		free(splitted);
+		j = 0;
 	}
 	return (1);
 }
@@ -74,7 +100,7 @@ int	ft_sum_operations(t_counter *stcks)
 	return (res);
 }
 
-void	ft_bench(t_group *stcks, int bench, int mode, double disorder)
+void	ft_bench(t_group *stcks, int bench, int mode, int disorder)
 {
 	char c[21];
 	t_counter *tmp;
@@ -90,7 +116,7 @@ void	ft_bench(t_group *stcks, int bench, int mode, double disorder)
 			ft_strlcpy(c, "Complex / O(n log n)", 21);
 		if (mode == 4)
 			ft_strlcpy(c, "Adaptive / ", 12);
-		ft_printf("[bench] disorder:	%d%%\n", disorder);
+		ft_printf("[bench] disorder:	%i%%\n", disorder);
 		ft_printf("[bench] strategy: %s\n", c);
 		ft_printf("[bench] total_ops: %d\n", ft_sum_operations(tmp));
 		ft_printf("[bench] sa:	%i	sb:	%i	ss:	%i", tmp->sa, tmp->sb, tmp->ss);
@@ -142,6 +168,8 @@ int main(int argc, char **argv)
 	if (ft_fill_list(&(stcks->a), tmp, i, argc, argv) == 0)
 		return (0);
 	disorder = ft_compute_disorder(stcks->a);
+	if (disorder == 0)
+		return (0);
 	// current = stcks->a;
 	// while (current)
 	// {
@@ -153,7 +181,7 @@ int main(int argc, char **argv)
 	// while (i < argc)
 	// 	ft_printf("[%s]\n", argv[i++]);
 	// ft_printf("{%d}", argc - 1);
-	//ft_printf("\n");
+	// ft_printf("\n");
 	algorithm(mode, stcks, bench);
 	// ft_printf("\n");
 	// current = stcks->a;

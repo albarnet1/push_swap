@@ -6,17 +6,17 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/13 10:42:24 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/13 16:21:13 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/16 18:42:08 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-double	ft_compute_disorder(t_stack *stck_a)
+int	ft_compute_disorder(t_stack *stck_a)
 {
-	double	mistakes;
-	double	total_pairs;
+	int	mistakes;
+	int	total_pairs;
 	int		i;
 	int		j;
 	t_stack	*tmp;
@@ -25,6 +25,8 @@ double	ft_compute_disorder(t_stack *stck_a)
 	total_pairs = 0;
 	i = 0;
 	tmp = stck_a;
+	if (i == ft_stcksize(stck_a))
+		return (0);
 	while (i < ft_stcksize(stck_a))
 	{
 		j = i + 1;
@@ -39,7 +41,8 @@ double	ft_compute_disorder(t_stack *stck_a)
 		tmp = stck_a;
 		i++;
 	}
-	return (mistakes / total_pairs);
+	//ft_printf("%i", (mistakes / total_pairs) * 100);
+	return ((mistakes * 100) / total_pairs);
 }
 
 /* int main(void)
