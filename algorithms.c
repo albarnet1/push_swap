@@ -6,21 +6,34 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/10 12:11:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/17 16:45:25 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/17 17:32:52 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_simple(t_group *stcks, int bench)
+void	ft_simple_stack_operations(t_group *stcks, int bench, int j)
+{
+	if (j > (ft_nodecount(stcks->a)/2))
+	{
+		while (j++ < ft_nodecount(stcks->a))
+			rra(stcks, bench);
+	}
+	else
+	{
+		while (j-- > 0)
+			ra(stcks, bench);
+	}
+	pb(stcks, bench);
+}
+
+void	ft_simple(t_group *stcks, int bench)
 {
 	t_stack	*tmp;
 	int		pnbr;
 	int		i;
 	int		j;
 
-	j = 0;
-	i = 0;
 	tmp = stcks->a;
 	while (stcks->a != NULL)
 	{
@@ -37,11 +50,7 @@ int	ft_simple(t_group *stcks, int bench)
 			tmp = tmp->next;
 			i++;
 		}
-		while (j-- > 0)
-		{
-			ra(stcks, bench);
-		}
-		pb(stcks, bench);
+		ft_simple_stack_operations(stcks, bench, j);
 		tmp = stcks->a;
 	}
 	tmp = stcks->b;
@@ -50,7 +59,6 @@ int	ft_simple(t_group *stcks, int bench)
 		pa(stcks, bench);
 		tmp = stcks->b;
 	}
-	return (1);
 }
 
 void	algorithm(int mode, t_group *stcks, int bench)

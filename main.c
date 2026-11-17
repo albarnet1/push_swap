@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/17 17:02:10 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/17 17:36:29 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,8 +173,6 @@ int	main(int argc, char **argv)
 	if (ft_check_duplicates(stcks) == 0)
 		return (0);
 	disorder = ft_compute_disorder(stcks->a);
-	if (disorder == 0)
-		return (ft_free(&stcks));
 	// current = stcks->a;
 	// while (current)
 	// {

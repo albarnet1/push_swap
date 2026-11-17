@@ -6,7 +6,7 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/13 10:42:24 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/17 16:49:51 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/17 18:11:20 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int	ft_compute_disorder(t_stack *stck_a)
 	tmp = stck_a;
 	if (i == ft_stcksize(stck_a))
 		return (0);
-	while (i < ft_stcksize(stck_a))
+	while (i < (ft_stcksize(stck_a) - 1))
 	{
 		j = i + 1;
-		while (j < ft_stcksize(stck_a) - 1)
+		while (j < (ft_stcksize(stck_a) - 1))
 		{
 			total_pairs++;
 			if (tmp->number > tmp->next->number)
@@ -41,6 +41,9 @@ int	ft_compute_disorder(t_stack *stck_a)
 		tmp = stck_a;
 		i++;
 	}
+	if (mistakes == 0 && total_pairs == 0)
+		return (0);
+	ft_printf("%d", total_pairs);
 	return ((mistakes * 100) / total_pairs);
 }
 

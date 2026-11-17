@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:18 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/17 15:52:20 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/17 17:06:49 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		ft_stcksize(t_stack *lst);
 t_stack	*ft_stcklast(t_stack *lst);
 t_stack	*pop(t_stack **stack);
 int		ft_compute_disorder(t_stack *stck_a);
+int		ft_nodecount(t_stack *stack);
 
 void	swap(t_stack **stack);
 void	sa(t_group *group, int bench);
