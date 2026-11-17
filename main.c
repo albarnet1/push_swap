@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/16 18:35:49 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/17 15:47:09 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_isnum(char *s)
 	return (1);
 }
 
-int	ft_fill_list(t_stack **a, t_stack *tmp, int i, int argc, char **argv)
+int	ft_fill_list(t_group *stcks, t_stack *tmp, int i, int argc, char **argv)
 {
 	int nbr;
 	char **splitted;
@@ -57,23 +57,23 @@ int	ft_fill_list(t_stack **a, t_stack *tmp, int i, int argc, char **argv)
 	{
 		if (ft_isnum(argv[i]) == 0)
 		{
-			ft_printf("Error\n");
-			return (ft_free((a)));
+			write(2, "Error\n", 6);
+			return (ft_free(&stcks));
 		}
 		if (strncmp(argv[i], "", 1) == 0 && i < argc)
 			i++;
 		splitted = ft_split(argv[i++], ' ');
 		if (!splitted)
-			return (0);
+			return (ft_free(&stcks));
 		while (splitted[j] != NULL)
 		{
 			tmp = malloc(sizeof(t_stack));
 			if (!tmp)
-				return (0);
+				return (ft_free(&stcks));
 			nbr = ft_atoi(splitted[j++]);
 			tmp->number = nbr;
 			tmp->next = NULL;
-			ft_stckadd_back((a), tmp);
+			ft_stckadd_back((&stcks->a), tmp);
 		}
 		free(splitted);
 		j = 0;
@@ -129,10 +129,10 @@ void	ft_bench(t_group *stcks, int bench, int mode, int disorder)
 // To discuss: we can avoid -> if declare stacks directly and not via pointers
 int main(int argc, char **argv)
 {
-	int i;
-	int mode;
-	int bench;
-	double	disorder;
+	int			i;
+	int			mode;
+	int			bench;
+	double		disorder;
 	t_group		*stcks;
 	t_stack		*tmp;
 	t_stack		*current;
@@ -142,7 +142,10 @@ int main(int argc, char **argv)
 		return (0);
 	stcks->a = NULL;
 	stcks->b = NULL;
+	stcks->ops = NULL;
 	stcks->ops = malloc(sizeof(t_counter));
+	if (stcks->ops == NULL)
+		return (ft_free(&stcks));
 	i = 1;
 	mode = 0;
 	bench = 0;
@@ -165,17 +168,19 @@ int main(int argc, char **argv)
 		return (0);
 	if (mode != 0)
 		i++;
-	if (ft_fill_list(&(stcks->a), tmp, i, argc, argv) == 0)
+	if (ft_fill_list(stcks, tmp, i, argc, argv) == 0)
+		return (0);
+	if (ft_check_duplicates(stcks) == 0)
 		return (0);
 	disorder = ft_compute_disorder(stcks->a);
 	if (disorder == 0)
 		return (0);
-	// current = stcks->a;
-	// while (current)
-	// {
-	// 	ft_printf("%d ", current->number);
-	// 	current = current->next;
-	// }
+	current = stcks->a;
+	while (current)
+	{
+		ft_printf("%d ", current->number);
+		current = current->next;
+	}
 	// ft_printf("\n");
 	i = 1;
 	// while (i < argc)
@@ -183,13 +188,13 @@ int main(int argc, char **argv)
 	// ft_printf("{%d}", argc - 1);
 	// ft_printf("\n");
 	algorithm(mode, stcks, bench);
-	// ft_printf("\n");
-	// current = stcks->a;
-	// while (current)
-	// {
-	// 	ft_printf("%d ", current->number);
-	// 	current = current->next;
-	// }
-	// ft_printf("\n");
+	ft_printf("\n");
+	current = stcks->a;
+	while (current)
+	{
+		ft_printf("%d ", current->number);
+		current = current->next;
+	}
+	ft_printf("\n");
 	ft_bench(stcks, bench, mode, disorder);
 }
