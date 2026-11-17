@@ -6,15 +6,15 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/12 12:56:43 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/13 15:33:07 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/17 16:48:40 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_nodecount(t_stack *stack)
+int	ft_nodecount(t_stack *stack)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (stack != NULL)
@@ -25,10 +25,10 @@ int ft_nodecount(t_stack *stack)
 	return (i);
 }
 
-int *ft_convertarr(t_stack *stack, int size)
+int	*ft_convertarr(t_stack *stack, int size)
 {
-	int *numbers;
-	int i;
+	int	*numbers;
+	int	i;
 
 	i = 0;
 	numbers = (int *)malloc(sizeof(int) * size);
@@ -40,11 +40,11 @@ int *ft_convertarr(t_stack *stack, int size)
 	return (numbers);
 }
 
-void ft_sortarr(int *numbers, int size)
+void	ft_sortarr(int *numbers, int size)
 {
-	int tmp;
-	int i;
-	int j;
+	int	tmp;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -65,13 +65,11 @@ void ft_sortarr(int *numbers, int size)
 	}
 }
 
-void ft_match_index(t_group *stcks, int *numbers, int size)
+void	ft_match_index(t_group *stcks, int *numbers, int size)
 {
 	t_stack	*tmp;
-	int i;
-	int j;
+	int		j;
 
-	i = 0;
 	tmp = stcks->a;
 	while (tmp != NULL)
 	{
@@ -86,12 +84,13 @@ void ft_match_index(t_group *stcks, int *numbers, int size)
 	}
 }
 
-void ft_complex(t_group *stcks, int bench)
+void	ft_complex(t_group *stcks, int bench)
 {
-	int i;
-	int j;
-	int size;
-	int *intarr;
+	int	i;
+	int	j;
+	int	size;
+	int	*intarr;
+	int	cnt;
 
 	size = ft_nodecount(stcks->a);
 	intarr = ft_convertarr(stcks->a, size);
@@ -101,8 +100,7 @@ void ft_complex(t_group *stcks, int bench)
 	ft_match_index(stcks, intarr, size);
 	i = 0;
 	j = 0;
-	// max_rank
-	int cnt = 0;
+	cnt = 0;
 	while (((size - 1) >> cnt) != 0)
 		cnt++;
 	while (i < cnt)

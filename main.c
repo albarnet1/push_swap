@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/17 15:47:09 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/17 17:02:10 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,30 @@
 
 int	ft_isnum(char *s)
 {
-	int i;
-	int j;
-	
+	int	i;
+	int	j;
+
 	j = 1;
 	i = 0;
 	if (!s)
-	return (0);
+		return (0);
 	while (s[i])
 	{
 		if (s[i] != ' ' && s[i] != '-' && s[i] != '+')
-		j = ft_isdigit(s[i]);
+			j = ft_isdigit(s[i]);
 		i++;
 		if (j == 0)
-		return (0);
+			return (0);
 	}
 	return (1);
 }
 
-int	ft_fill_list(t_group *stcks, t_stack *tmp, int i, int argc, char **argv)
+int	ft_fill_list(t_group *stcks, int i, int argc, char **argv)
 {
-	int nbr;
-	char **splitted;
-	int j;
+	int			nbr;
+	char		**splitted;
+	int			j;
+	t_stack		*tmp;
 
 	j = 0;
 	nbr = 0;
@@ -50,7 +51,7 @@ int	ft_fill_list(t_group *stcks, t_stack *tmp, int i, int argc, char **argv)
 	while (strncmp(argv[j++], "", 1) == 0 && i != argc)
 	{
 		if (j == argc)
-			return (0);
+			return (ft_free(&stcks));
 	}
 	j = 0;
 	while (i < argc)
@@ -83,8 +84,8 @@ int	ft_fill_list(t_group *stcks, t_stack *tmp, int i, int argc, char **argv)
 
 int	ft_sum_operations(t_counter *stcks)
 {
-	int res;
-	
+	int	res;
+
 	res = 0;
 	res += stcks->sa;
 	res += stcks->sb;
@@ -102,8 +103,8 @@ int	ft_sum_operations(t_counter *stcks)
 
 void	ft_bench(t_group *stcks, int bench, int mode, int disorder)
 {
-	char c[21];
-	t_counter *tmp;
+	char		c[21];
+	t_counter	*tmp;
 
 	tmp = stcks->ops;
 	if (bench == 1)
@@ -127,15 +128,14 @@ void	ft_bench(t_group *stcks, int bench, int mode, int disorder)
 }
 
 // To discuss: we can avoid -> if declare stacks directly and not via pointers
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int			i;
 	int			mode;
 	int			bench;
 	double		disorder;
 	t_group		*stcks;
-	t_stack		*tmp;
-	t_stack		*current;
+	//t_stack		*current;
 
 	stcks = malloc(sizeof(t_group));
 	if (!stcks)
@@ -168,19 +168,19 @@ int main(int argc, char **argv)
 		return (0);
 	if (mode != 0)
 		i++;
-	if (ft_fill_list(stcks, tmp, i, argc, argv) == 0)
+	if (ft_fill_list(stcks, i, argc, argv) == 0)
 		return (0);
 	if (ft_check_duplicates(stcks) == 0)
 		return (0);
 	disorder = ft_compute_disorder(stcks->a);
 	if (disorder == 0)
-		return (0);
-	current = stcks->a;
-	while (current)
-	{
-		ft_printf("%d ", current->number);
-		current = current->next;
-	}
+		return (ft_free(&stcks));
+	// current = stcks->a;
+	// while (current)
+	// {
+	// 	ft_printf("%d ", current->number);
+	// 	current = current->next;
+	// }
 	// ft_printf("\n");
 	i = 1;
 	// while (i < argc)
@@ -188,13 +188,13 @@ int main(int argc, char **argv)
 	// ft_printf("{%d}", argc - 1);
 	// ft_printf("\n");
 	algorithm(mode, stcks, bench);
-	ft_printf("\n");
-	current = stcks->a;
-	while (current)
-	{
-		ft_printf("%d ", current->number);
-		current = current->next;
-	}
-	ft_printf("\n");
+	// ft_printf("\n");
+	// current = stcks->a;
+	// while (current)
+	// {
+	// 	ft_printf("%d ", current->number);
+	// 	current = current->next;
+	// }
+	// ft_printf("\n");
 	ft_bench(stcks, bench, mode, disorder);
 }
