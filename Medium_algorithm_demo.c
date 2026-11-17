@@ -6,25 +6,12 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/16 11:14:34 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/16 16:15:58 by dakuznet      ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   Rules.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2026/11/05 15:25:49 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/13 15:31:59 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/17 18:01:42 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
-#include <limits.h>
 
 // Swap a/b: go to the second element and put it in front. Do nothing if there is only one or no elements. 
 void	swap(t_stack **stack)
@@ -207,7 +194,7 @@ void	print_stack(t_stack *stack)
 {
 	while (stack != NULL)
 	{
-		printf("%i ", stack->number);
+		printf("%i - %i\n", stack->number, stack->rank);
 		stack = stack->next;
 	}
 	printf("\n");
@@ -225,11 +212,11 @@ int ft_sqrt(int n)
 
 int max(t_stack *stck)
 {
-	int pnbr = stck->number;
+	int pnbr = stck->rank;
 	while (stck != NULL)
 	{
-		if (pnbr < stck->number)
-			pnbr = stck->number;
+		if (pnbr < stck->rank)
+			pnbr = stck->rank;
 		stck = stck->next;
 	}
 	return(pnbr);
@@ -256,7 +243,6 @@ t_stack *fill_stack(t_stack *a, int *arr)
 	while (arr[i] != -9999)
 	{
 		tmp = malloc(sizeof(t_stack));
-		tmp->next = malloc(sizeof(t_stack));
 		if (!tmp)
 			return(tmp);
 		tmp->number = arr[i];
@@ -267,51 +253,83 @@ t_stack *fill_stack(t_stack *a, int *arr)
 	return (a);
 }
 
+int	*ft_convertarr(t_stack *stack, int size)
+{
+	int	*numbers;
+	int	i;
+
+	i = 0;
+	numbers = (int *)malloc(sizeof(int) * size);
+	while (i < size)
+	{
+		numbers[i++] = stack->number;
+		stack = stack->next;
+	}
+	return (numbers);
+}
+
+void ft_ranking(t_stack *a, int len)
+{
+	int i;
+	int j;
+	int *arr;
+	arr = ft_convertarr(a, len);
+	while (a != NULL)
+	{
+		i = 0;
+		j = 0;
+		while(j < len)
+		{
+			if (a->number > arr[j])
+				i++;
+			j++;
+		}
+		a->rank = i;
+		a = a->next;
+	}
+}
+
 int main(void)
 {
 	//int arr[] = {2, 5, 9, 37, 12, 58, 44, 23, 61, 18, 50, 31, 47, 26, 55, 14, -9999};
 	int arr[] = {1, 2, 3, 0, -9999};
 	t_stack *a = NULL;
 	t_stack *b = NULL;
-	t_counter	ops = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	t_counter *ops = NULL;
 	
 	a = fill_stack(a, arr);
-	t_group group = {a, b, &ops};
+	t_group group = {a, b, ops};
+	
+	int len = ft_stcksize(group.a);
+	
+	ft_ranking(group.a, len);
+	printf("stack_a:\n");
+	print_stack(group.a);
+	printf("stack_b:\n");
+	print_stack(group.b);
 	
 	int bench = 1;
-	int len = ft_stcksize(group.a);
 	int ind = ft_sqrt(len); printf("IND: %i\n", ind);
 	int stck_min = min(group.a); printf("MIN: %i\n", stck_min);
 	int stck_max = max(group.a); printf("MAX: %i\n", stck_max);
 	int width = (stck_max - stck_min + 1)/ind; printf("WIDTH: %i\n", width);
-	int i = ind + 1;
+	int i = ind;
 	int remaining;
+	
 	while (i >= 0)
 	{
 		printf("Bucket: %i\n", i);
 		remaining = len;
 			while (remaining-- > 0 && group.a != NULL)
 			{
-				if (((group.a->number - stck_min)/width) == i)
-				{
+				if (((group.a->rank - stck_min)/width) == i)
 					pb(&group, bench);
-					printf("stack_a:\n");
-					print_stack(group.a);
-					printf("stack_b:\n");
-					print_stack(group.b);
-				}
 				else
-				{
 					ra(&group, bench);
-					printf("stack_a:\n");
-					print_stack(group.a);
-					printf("stack_b:\n");
-					print_stack(group.b);
-				}
 			}
 			while (group.b != NULL)
 			{
-				if (group.b->number == max(group.b))
+				if (group.b->rank == max(group.b))
 					pa(&group, bench);
 				else
 					rb(&group, bench);
@@ -319,6 +337,15 @@ int main(void)
 		i--;
 	}
 	
+	printf("stack_a:\n");
+	print_stack(group.a);
+	printf("stack_b:\n");
+	print_stack(group.b);
+	
+	// printf("stack_a:\n");
+	// print_stack(group.a);
+	// printf("stack_b:\n");
+	// print_stack(group.b);
 	// push(&group.b, &group.a);
 	// printf("Push:\n");
 	// printf("stack_a:\n");
@@ -339,7 +366,7 @@ int main(void)
 	// rotate(&group.b);
 	// printf("Rotate:\n");
 	// printf("stack_a:\n");
-	// print_stack(group.a);
+	// print_stack(group.a);ft_ranking(group.a, len);
 	// printf("stack_b:\n");
 	// print_stack(group.b);
 	// printf("\n");
