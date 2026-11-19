@@ -6,7 +6,7 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/16 11:14:34 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/17 18:01:42 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/19 12:17:56 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,7 @@ int ft_sqrt(int n)
 	return (i);	
 }
 
-int max(t_stack *stck)
+int ft_max(t_stack *stck)
 {
 	int pnbr = stck->rank;
 	while (stck != NULL)
@@ -222,7 +222,7 @@ int max(t_stack *stck)
 	return(pnbr);
 }
 
-int min(t_stack *stck)
+int ft_min(t_stack *stck)
 {
 	int pnbr = stck->number;
 	while (stck != NULL)
@@ -291,14 +291,15 @@ void ft_ranking(t_stack *a, int len)
 
 int main(void)
 {
-	//int arr[] = {2, 5, 9, 37, 12, 58, 44, 23, 61, 18, 50, 31, 47, 26, 55, 14, -9999};
-	int arr[] = {1, 2, 3, 0, -9999};
+	int arr[] = {2, 5, 9, 37, 12, 58, 44, 23, 61, 18, 50, 31, 47, 26, 55, 14, -9999};
+	//int arr[] = {1, 2, 3, 0, -9999};
 	t_stack *a = NULL;
 	t_stack *b = NULL;
-	t_counter *ops = NULL;
+	//t_counter *ops = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	t_counter ops = {0};
 	
 	a = fill_stack(a, arr);
-	t_group group = {a, b, ops};
+	t_group group = {a, b, &ops};
 	
 	int len = ft_stcksize(group.a);
 	
@@ -309,11 +310,8 @@ int main(void)
 	print_stack(group.b);
 	
 	int bench = 1;
-	int ind = ft_sqrt(len); printf("IND: %i\n", ind);
-	int stck_min = min(group.a); printf("MIN: %i\n", stck_min);
-	int stck_max = max(group.a); printf("MAX: %i\n", stck_max);
-	int width = (stck_max - stck_min + 1)/ind; printf("WIDTH: %i\n", width);
-	int i = ind;
+	int bucket_nmb = ft_sqrt(len);
+	int i = bucket_nmb;
 	int remaining;
 	
 	while (i >= 0)
@@ -322,14 +320,14 @@ int main(void)
 		remaining = len;
 			while (remaining-- > 0 && group.a != NULL)
 			{
-				if (((group.a->rank - stck_min)/width) == i)
+				if ((group.a->rank * bucket_nmb/len) == i)
 					pb(&group, bench);
 				else
 					ra(&group, bench);
 			}
 			while (group.b != NULL)
 			{
-				if (group.b->rank == max(group.b))
+				if (group.b->rank == ft_max(group.b))
 					pa(&group, bench);
 				else
 					rb(&group, bench);
