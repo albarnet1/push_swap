@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/17 17:36:29 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/19 17:53:23 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,13 +117,16 @@ void	ft_bench(t_group *stcks, int bench, int mode, int disorder)
 			ft_strlcpy(c, "Complex / O(n log n)", 21);
 		if (mode == 4)
 			ft_strlcpy(c, "Adaptive / ", 12);
-		ft_printf("[bench] disorder:	%i%%\n", disorder);
-		ft_printf("[bench] strategy: %s\n", c);
-		ft_printf("[bench] total_ops: %d\n", ft_sum_operations(tmp));
-		ft_printf("[bench] sa:	%i	sb:	%i	ss:	%i", tmp->sa, tmp->sb, tmp->ss);
-		ft_printf("	pa:	%i	pb:	%i	\n", tmp->pa, tmp->pb);
-		ft_printf("[bench] ra:	%i	rb:	%i	rra:	%i", tmp->ra, tmp->rb, tmp->rra);
-		ft_printf("	rrb:	%i	rrr:	%i	\n", tmp->rrb, tmp->rrr);
+		write(2, "[bench] disorder: ", 19);
+		write(2, ft_itoa((int)disorder / 100), ft_strlen(ft_itoa((int)disorder)));
+		write(2, ".", 1);
+		write(2, (ft_itoa((int)disorder / 100) + 2), ft_strlen(ft_itoa((int)disorder) + 1));
+		// write(2, "[bench] strategy: %s\n", c);
+		// write(2, "[bench] total_ops: %d\n", ft_sum_operations(tmp));
+		// write(2, "[bench] sa:	%i	sb:	%i	ss:	%i", tmp->sa, tmp->sb, tmp->ss);
+		// write(2, "	pa:	%i	pb:	%i	\n", tmp->pa, tmp->pb);
+		// write(2, "[bench] ra:	%i	rb:	%i	rra:	%i", tmp->ra, tmp->rb, tmp->rra);
+		// write(2, "	rrb:	%i	rrr:	%i	\n", tmp->rrb, tmp->rrr);
 	}
 }
 
@@ -150,7 +153,7 @@ int	main(int argc, char **argv)
 	mode = 0;
 	bench = 0;
 	if (argc < 2)
-		return (0);
+		return (ft_free(&stcks));
 	if (ft_strncmp(argv[i], "--bench", 7) == 0)
 	{
 		bench = 1;
@@ -165,7 +168,7 @@ int	main(int argc, char **argv)
 	else if (ft_strncmp(argv[i], "--adaptive", 10) == 0)
 		mode = 4;
 	if (mode != 0 && bench == 1 && argc == 3)
-		return (0);
+		return (ft_free(&stcks));
 	if (mode != 0)
 		i++;
 	if (ft_fill_list(stcks, i, argc, argv) == 0)
@@ -195,4 +198,5 @@ int	main(int argc, char **argv)
 	// }
 	// ft_printf("\n");
 	ft_bench(stcks, bench, mode, disorder);
+	ft_free(&stcks);
 }

@@ -6,7 +6,7 @@
 #    By: albarnet <albarnet@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2026/11/05 14:43:11 by albarnet      #+#    #+#                  #
-#    Updated: 2026/11/19 14:01:43 by albarnet      ########   odam.nl          #
+#    Updated: 2026/11/19 17:59:09 by albarnet      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ FTPRINTFSOURCES := ft_printf_libft/ft_printf.c \
 		ft_onerror_funcs.c \
 		list_funcs.c \
 		main.c \
-		Rules.c
+		Rules.c \
+		ft_check_duplicates.c
 LIBFTSOURCES = ft_printf_libft/Libft/ft_atoi.c ft_printf_libft/Libft/ft_bzero.c ft_printf_libft/Libft/ft_calloc.c \
 		ft_printf_libft/Libft/ft_isalnum.c ft_printf_libft/Libft/ft_isalpha.c ft_printf_libft/Libft/ft_isascii.c \
 		ft_printf_libft/Libft/ft_isdigit.c ft_printf_libft/Libft/ft_isprint.c ft_printf_libft/Libft/ft_memchr.c \
@@ -47,11 +48,11 @@ SUBARCHIVES := ft_printf_libft/libftprintf.a ft_printf_libft/Libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
-	ar rcs $(NAME) $(OBJECTS)
+# $(NAME): $(OBJECTS)
+# 	ar rcs $(NAME) $(OBJECTS)
 
-# %.o : %.c ft_printf_libft/ft_printf.a
-# 	$(CC) $(CFLAGS) -I./ft_printf_libft -I./ft_printf_libft/Libft -c $< -o $(NAME)
+$(NAME): $(OBJECTS)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
 
 ft_printf_libft/ft_printf.a:
 	$(MAKE) -C $(dir $@)

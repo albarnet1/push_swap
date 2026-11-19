@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:18 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/17 17:06:49 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/19 17:57:11 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef	struct s_counter_ops
 	int	rra;
 	int	rrb;
 	int	rrr;
-	char **operations;
 }	t_counter;
 
 typedef struct	s_group
@@ -50,8 +49,9 @@ typedef struct	s_group
 
 void	ft_complex(t_group *stcks, int bench);
 void	algorithm(int mode, t_group *stcks, int bench);
-int		ft_medium(t_group *stcks);
+void	ft_medium(t_group *stcks, int bench);
 int		ft_check_duplicates(t_group *stcks);
+int		*ft_convertarr(t_stack *stack, int size);
 
 void	ft_stckadd_front(t_stack **lst, t_stack *new);
 void	ft_stckadd_back(t_stack **lst, t_stack *new);

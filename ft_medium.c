@@ -6,7 +6,7 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/12 17:56:00 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/19 13:41:45 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/19 17:05:57 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int ft_sqrt(int n)
 	if (n <= 0)
 		return (0);
 	i = 0;
-	while((i + 1) <= n/ (i + 1))
+	while((i + 1)*(i + 1) <= n)
 		i++;
 	return (i);	
 }
@@ -39,20 +39,20 @@ int ft_max(t_stack *stck)
 	return(pnbr);
 }
 
-int	*ft_convertarr(t_stack *stack, int size)
-{
-	int	*numbers;
-	int	i;
+// int	*ft_convertarr(t_stack *stack, int size)
+// {
+// 	int	*numbers;
+// 	int	i;
 
-	i = 0;
-	numbers = (int *)malloc(sizeof(int) * size);
-	while (i < size)
-	{
-		numbers[i++] = stack->number;
-		stack = stack->next;
-	}
-	return (numbers);
-}
+// 	i = 0;
+// 	numbers = (int *)malloc(sizeof(int) * size);
+// 	while (i < size)
+// 	{
+// 		numbers[i++] = stack->number;
+// 		stack = stack->next;
+// 	}
+// 	return (numbers);
+// }
 
 void ft_ranking(t_stack *a, int len)
 {
@@ -91,7 +91,7 @@ void	ft_medium(t_group *stcks, int bench)
 		remaining = len;
 			while (remaining-- > 0 && stcks->a != NULL)
 			{
-				if (((long long)stcks->a->rank * bucket_nmb/len) == i)
+				if ((stcks->a->rank * bucket_nmb/len) == i)
 					pb(stcks, bench);
 				else
 					ra(stcks, bench);

@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/12 12:56:43 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/19 14:03:23 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/19 17:03:01 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	ft_match_index(t_group *stcks, int *numbers, int size)
 		}
 		tmp = tmp->next;
 	}
+	free (numbers);
 }
 
 void	ft_complex(t_group *stcks, int bench)

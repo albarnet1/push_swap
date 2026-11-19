@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/10 12:11:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/17 17:32:52 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/19 15:11:49 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	algorithm(int mode, t_group *stcks, int bench)
 {
 	if (mode == 1)
 		ft_simple(stcks, bench);
-	// if (mode == 2)
-	// 	ft_medium(stcks);
+	if (mode == 2)
+		ft_medium(stcks, bench);
 	if (mode == 3)
 		ft_complex(stcks, bench);
 	// if (mode == 4)
