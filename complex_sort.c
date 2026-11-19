@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/12 12:56:43 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/17 16:48:40 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/19 14:03:23 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	*ft_convertarr(t_stack *stack, int size)
 	return (numbers);
 }
 
-void	ft_sortarr(int *numbers, int size)
+void	ft_sortarr(int *numbers)
 {
 	int	tmp;
 	int	i;
@@ -96,7 +96,7 @@ void	ft_complex(t_group *stcks, int bench)
 	intarr = ft_convertarr(stcks->a, size);
 	if (!intarr)
 		return ;
-	ft_sortarr(intarr, size);
+	ft_sortarr(intarr);
 	ft_match_index(stcks, intarr, size);
 	i = 0;
 	j = 0;

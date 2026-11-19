@@ -6,7 +6,7 @@
 #    By: albarnet <albarnet@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2026/11/05 14:43:11 by albarnet      #+#    #+#                  #
-#    Updated: 2026/11/10 14:24:23 by albarnet      ########   odam.nl          #
+#    Updated: 2026/11/19 14:01:43 by albarnet      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,15 @@ NAME := push_swap
 # NAME2 := push_swap.out
 FTPRINTFSOURCES := ft_printf_libft/ft_printf.c \
 		ft_printf_libft/ft_putnbr_base.c \
-		ft_printf_libft/ft_putnbr_base_unsigned.c
+		ft_printf_libft/ft_putnbr_base_unsigned.c \
+		algorithms.c \
+		complex_sort.c \
+		ft_disorder.c \
+		ft_medium.c \
+		ft_onerror_funcs.c \
+		list_funcs.c \
+		main.c \
+		Rules.c
 LIBFTSOURCES = ft_printf_libft/Libft/ft_atoi.c ft_printf_libft/Libft/ft_bzero.c ft_printf_libft/Libft/ft_calloc.c \
 		ft_printf_libft/Libft/ft_isalnum.c ft_printf_libft/Libft/ft_isalpha.c ft_printf_libft/Libft/ft_isascii.c \
 		ft_printf_libft/Libft/ft_isdigit.c ft_printf_libft/Libft/ft_isprint.c ft_printf_libft/Libft/ft_memchr.c \

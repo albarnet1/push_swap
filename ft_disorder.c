@@ -6,7 +6,7 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/13 10:42:24 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/19 13:51:47 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/19 13:58:15 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	ft_compute_disorder(t_stack *stck_a)
 	mistakes = 0;
 	total_pairs = 0;
 	tmp = stck_a;
-	tmp2 = stck_a->next;
 	while (tmp != NULL)
 	{
 		tmp2 = tmp->next;
