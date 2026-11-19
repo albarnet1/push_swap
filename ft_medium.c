@@ -6,88 +6,103 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/12 17:56:00 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/13 15:22:08 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/19 13:41:45 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "push_swap.h"
-#include <stdio.h>
-#include <limits.h>
 
-int sqrt(int n)
+int ft_sqrt(int n)
 {
 	int i;
 
+	if (n <= 0)
+		return (0);
 	i = 0;
-	while((i + 1) * (i + 1) <= n)
+	while((i + 1) <= n/ (i + 1))
 		i++;
 	return (i);	
 }
 
-int max(t_stack *stck)
+int ft_max(t_stack *stck)
 {
-	int max;
-
-	max = INT_MIN;
-	while (stck->next != NULL)
-	{
-		if (stck->number > max)
-			max = stck->number;
-		stck = stck -> next;
-	}
-	return (max);
-}
-
-int min(t_stack *stck)
-{
-	int min;
-
-	min = INT_MAX;
-	while (stck->next != NULL)
-	{
-		if (stck->number < min)
-			min = stck->number;
-		stck = stck -> next;
-	}
-	return (min);
-}
-int	ft_medium(t_group *stcks)
-{
-	t_stack *a;
-	t_stack *b;
-	int width;
-	int	len;
-	int ind;
-	int stck_min;
-	int stck_max;
+	int	pnbr;
 	
-	a = stcks->a;
-	b = stcks->b;
-	len = ft_stcksize(a);
-	ind = sqrt(len);
-	stck_min = min(a);
-	stck_max = max(a);
-	width = (stck_max - stck_min + 1)/ind;
-	while (ind >= 0)
+	pnbr = stck->rank;
+	while (stck != NULL)
 	{
-		while (a->next != NULL)
-			if (((a->number - stck_min)/width) == ind)
-			{
-				ft_stckadd_front(stcks->b, a);
-				// pop a
-			}
-		// simple sort inside b;
-		// return sorted b to stcks->a;
-		// ind++;
-		// a = stcks->a;
+		if (pnbr < stck->rank)
+			pnbr = stck->rank;
+		stck = stck->next;
 	}
+	return(pnbr);
 }
 
-int main(void)
+int	*ft_convertarr(t_stack *stack, int size)
 {
-	int n = 25;
-	printf("sqrt(%i) = %i", n, ft_sqrt(n));
+	int	*numbers;
+	int	i;
 
-	return (0);
+	i = 0;
+	numbers = (int *)malloc(sizeof(int) * size);
+	while (i < size)
+	{
+		numbers[i++] = stack->number;
+		stack = stack->next;
+	}
+	return (numbers);
+}
+
+void ft_ranking(t_stack *a, int len)
+{
+	int i;
+	int j;
+	int *arr;
+	arr = ft_convertarr(a, len);
+	if (!arr)
+		return ;
+	while (a != NULL)
+	{
+		i = 0;
+		j = 0;
+		while(j < len)
+		{
+			if (a->number > arr[j])
+				i++;
+			j++;
+		}
+		a->rank = i;
+		a = a->next;
+	}
+	free (arr); // ???
+}
+
+void	ft_medium(t_group *stcks, int bench)
+{
+	int len = ft_stcksize(stcks->a);
+	ft_ranking(stcks->a, len);
+	
+	int bucket_nmb = ft_sqrt(len);
+	int i = bucket_nmb;
+	int remaining;
+	while (i >= 0)
+	{
+		remaining = len;
+			while (remaining-- > 0 && stcks->a != NULL)
+			{
+				if (((long long)stcks->a->rank * bucket_nmb/len) == i)
+					pb(stcks, bench);
+				else
+					ra(stcks, bench);
+			}
+			while (stcks->b != NULL)
+			{
+				if (stcks->b->rank == ft_max(stcks->b))
+					pa(stcks, bench);
+				else
+					rb(stcks, bench);
+			}
+		i--;
+	}
 }
