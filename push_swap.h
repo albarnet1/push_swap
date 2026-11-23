@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:18 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/23 15:34:28 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/23 18:51:15 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ char	*ft_disordertoascii(int disorder);
 int		ft_nodecount(t_stack *stack);
 void	ft_adaptive(t_group *stcks, int disorder, int bench);
 void	ft_simple(t_group *stcks, int bench);
+void	ft_bench(t_group *stcks, int bench, int mode, int disorder);
+void	ft_free_split(char **splitted);
 
 void	swap(t_stack **stack);
 void	sa(t_group *group, int bench);

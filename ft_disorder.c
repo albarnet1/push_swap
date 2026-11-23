@@ -6,7 +6,7 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/13 10:42:24 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/23 15:07:43 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/23 18:29:16 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,23 @@ static char *ft_disordertoa_h(int disorder, char *str1, char *str2)
 	return (res);
 }
 
+void *ft_freestrings(char *str1, char *str2)
+{
+	if (!str1 || !str2)
+	{
+		free(str1);
+		str1 = NULL;
+		free(str2);
+		str2 = NULL;
+		return (NULL);
+	}
+	free(str1);
+	str1 = NULL;
+	free(str2);
+	str2 = NULL;
+	return (NULL);
+}
+
 char	*ft_disordertoascii(int disorder)
 {
 	char *res;
@@ -52,22 +69,20 @@ char	*ft_disordertoascii(int disorder)
 	str1 = ft_itoa(disorder / 100);
 	str2 = ft_itoa(disorder);
 	if (!str1 || !str2)
-	{
-		free(str1);
-		free(str2);
-		return (NULL);
-	}
+		return (ft_freestrings(str1, str2));
 	res = ft_disordertoa_h(disorder, str1, str2);
 	if ((disorder / 10) < 1 && (disorder) >= 1)
 	{
 		res = "0.0";
 		res = ft_strjoin(res, str2);
+		ft_freestrings(str1, str2);
 		if (!res)
-			return (NULL);
+			return (ft_freestrings(str1, str2));
 		return (res);
 	}
 	if (disorder < 1)
 		res = "0.00";
+	ft_freestrings(str1, str2);
 	return (res);
 }
 

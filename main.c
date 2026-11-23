@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/23 15:55:22 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/23 18:50:07 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,80 +76,34 @@ int	ft_fill_list(t_group *stcks, int i, int argc, char **argv)
 			tmp->next = NULL;
 			ft_stckadd_back((&stcks->a), tmp);
 		}
-		free(splitted);
+		ft_free_split(splitted);
 		j = 0;
 	}
 	return (1);
 }
 
-int	ft_sum_operations(t_counter *stcks)
-{
-	int	res;
 
-	res = 0;
-	res += stcks->sa;
-	res += stcks->sb;
-	res += stcks->ss;
-	res += stcks->pa;
-	res += stcks->pb;
-	res += stcks->ra;
-	res += stcks->rb;
-	res += stcks->rr;
-	res += stcks->rra;
-	res += stcks->rrb;
-	res += stcks->rrr;
-	return (res);
-}
 
-void	ft_bench(t_group *stcks, int bench, int mode, int disorder)
-{
-	char		c[21];
-	char		*dis;
-	t_counter	*tmp;
 
-	tmp = stcks->ops;
-	if (bench == 1)
-	{
-		if (mode == 1)
-			ft_strlcpy(c, "Simple / O(n^2)", 16);
-		if (mode == 2)
-			ft_strlcpy(c, "Medium / O(n√n)", 18);
-		if (mode == 3)
-			ft_strlcpy(c, "Complex / O(n log n)", 21);
-		if (mode == 4)
-			ft_strlcpy(c, "Adaptive / ", 12);
-		write(2, "[bench] disorder: ", 19);
-		dis = ft_disordertoascii(disorder);
-		write(2, dis, ft_strlen(dis));
-		write(2, "%\n", 2);
-		// write(2, "[bench] strategy: %s\n", c);
-		// write(2, "[bench] total_ops: %d\n", ft_sum_operations(tmp));
-		// write(2, "[bench] sa:", 12);
-		// write(2, %i	sb:	%i	ss:	%i", tmp->sa, tmp->sb, tmp->ss)
-		// write(2, "	pa:	%i	pb:	%i	\n", tmp->pa, tmp->pb);
-		// write(2, "[bench] ra:	%i	rb:	%i	rra:	%i", tmp->ra, tmp->rb, tmp->rra);
-		// write(2, "	rrb:	%i	rrr:	%i	\n", tmp->rrb, tmp->rrr);
-	}
-}
 
-void	algorithm(int mode, t_group *stcks, int disorder, int bench)
-{
-	if (mode == 1)
-		ft_simple(stcks, bench);
-	if (mode == 2)
-		ft_medium(stcks, bench);
-	if (mode == 3)
-		ft_complex(stcks, bench);
-	if (mode == 4)
-		ft_adaptive(stcks, disorder, bench);
-}
+// void	algorithm(int mode, t_group *stcks, int disorder, int bench)
+// {
+// 	if (mode == 1)
+// 		ft_simple(stcks, bench);
+// 	if (mode == 2)
+// 		ft_medium(stcks, bench);
+// 	if (mode == 3)
+// 		ft_complex(stcks, bench);
+// 	if (mode == 4)
+// 		ft_adaptive(stcks, disorder, bench);
+// }
 
 int	main(int argc, char **argv)
 {
 	int			i;
 	int			mode;
 	int			bench;
-	double		disorder;
+	int		disorder;
 	t_group		*stcks;
 	//t_stack		*current;
 

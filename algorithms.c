@@ -6,63 +6,30 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/10 12:11:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/23 15:34:58 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/23 18:13:13 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_simple_stack_operations(t_group *stcks, int bench, int j)
+void	ft_init_operations(t_counter *ops)
 {
-	if (j > (ft_nodecount(stcks->a)/2))
-	{
-		while (j++ < ft_nodecount(stcks->a))
-			rra(stcks, bench);
-	}
-	else
-	{
-		while (j-- > 0)
-			ra(stcks, bench);
-	}
-	pb(stcks, bench);
-}
-
-void	ft_simple(t_group *stcks, int bench)
-{
-	t_stack	*tmp;
-	int		pnbr;
-	int		i;
-	int		j;
-
-	tmp = stcks->a;
-	while (stcks->a != NULL)
-	{
-		j = 0;
-		i = 0;
-		pnbr = tmp->number;
-		while (tmp != NULL)
-		{
-			if (pnbr > tmp->number)
-			{
-				pnbr = tmp->number;
-				j = i;
-			}
-			tmp = tmp->next;
-			i++;
-		}
-		ft_simple_stack_operations(stcks, bench, j);
-		tmp = stcks->a;
-	}
-	tmp = stcks->b;
-	while (tmp != NULL)
-	{
-		pa(stcks, bench);
-		tmp = stcks->b;
-	}
+	ops->sa = 0;
+	ops->sb = 0;
+	ops->ss = 0;
+	ops->pa = 0;
+	ops->pb = 0;
+	ops->ra = 0;
+	ops->rb = 0;
+	ops->rr = 0;
+	ops->rra = 0;
+	ops->rrb = 0;
+	ops->rrr = 0;
 }
 
 void	algorithm(int mode, t_group *stcks, int disorder, int bench)
 {
+	ft_init_operations(stcks->ops);
 	if (mode == 1)
 		ft_simple(stcks, bench);
 	if (mode == 2)
