@@ -1,5 +1,0 @@
-*.o
-.gitignore
-test.c
-push_swap
-a.out
