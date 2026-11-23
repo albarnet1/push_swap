@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/23 15:37:23 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/23 15:54:50 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,10 +122,10 @@ void	ft_bench(t_group *stcks, int bench, int mode, int disorder)
 		dis = ft_disordertoascii(disorder);
 		write(2, dis, ft_strlen(dis));
 		write(2, "%\n", 2);
-		write(2, "[bench] strategy: %s\n", c);
-		write(2, "[bench] total_ops: %d\n", ft_sum_operations(tmp));
-		write(2, "[bench] sa:", 12);
-		write(2, %i	sb:	%i	ss:	%i", tmp->sa, tmp->sb, tmp->ss)
+		// write(2, "[bench] strategy: %s\n", c);
+		// write(2, "[bench] total_ops: %d\n", ft_sum_operations(tmp));
+		// write(2, "[bench] sa:", 12);
+		// write(2, %i	sb:	%i	ss:	%i", tmp->sa, tmp->sb, tmp->ss)
 		// write(2, "	pa:	%i	pb:	%i	\n", tmp->pa, tmp->pb);
 		// write(2, "[bench] ra:	%i	rb:	%i	rra:	%i", tmp->ra, tmp->rb, tmp->rra);
 		// write(2, "	rrb:	%i	rrr:	%i	\n", tmp->rrb, tmp->rrr);
