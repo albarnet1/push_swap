@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:18 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/23 12:16:56 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/23 13:42:22 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	ft_stckadd_back(t_stack **lst, t_stack *new);
 t_stack	*ft_stcklast(t_stack *lst);
 t_stack	*pop(t_stack **stack);
 int		ft_compute_disorder(t_stack *stck_a);
+char	*ft_disordertoascii(int disorder);
 int		ft_nodecount(t_stack *stack);
 
 void	swap(t_stack **stack);

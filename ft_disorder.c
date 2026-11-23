@@ -6,12 +6,70 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/13 10:42:24 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/23 12:55:53 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/23 15:07:43 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
+
+static char *ft_disordertoa_h(int disorder, char *str1, char *str2)
+{
+	char	*res;
+
+	res = "";
+	if ((disorder / 1000) >= 1)
+	{
+		res = ft_strjoin(str1, ".");
+		res = ft_strjoin(res, str2 + 2);
+		if (!res)
+			return (NULL);
+	}
+	else if ((disorder / 100) >= 1)
+	{
+		res = ft_strjoin(str1, ".");
+		res = ft_strjoin(res, str2 + 1);
+		if (!res)
+			return (NULL);
+	}
+	else if ((disorder / 10) >= 1)
+	{
+		res = ft_strjoin(str1, ".");
+		res = ft_strjoin(res, str2);
+		if (!res)
+			return (NULL);
+	}
+	return (res);
+}
+
+char	*ft_disordertoascii(int disorder)
+{
+	char *res;
+	char *str1;
+	char *str2;
+	str1 = NULL;
+	str2 = NULL;
+	str1 = ft_itoa(disorder / 100);
+	str2 = ft_itoa(disorder);
+	if (!str1 || !str2)
+	{
+		free(str1);
+		free(str2);
+		return (NULL);
+	}
+	res = ft_disordertoa_h(disorder, str1, str2);
+	if ((disorder / 10) < 1 && (disorder) >= 1)
+	{
+		res = "0.0";
+		res = ft_strjoin(res, str2);
+		if (!res)
+			return (NULL);
+		return (res);
+	}
+	if (disorder < 1)
+		res = "0.00";
+	return (res);
+}
 
 int	ft_compute_disorder(t_stack *stck_a)
 {
@@ -38,11 +96,6 @@ int	ft_compute_disorder(t_stack *stck_a)
 	if (mistakes == 0 && total_pairs == 0)
 		return (0);
 	return ((mistakes * 10000) / total_pairs);
-}
-
-char	*ft_disordertoascii()
-{
-	
 }
 
 /* int main(void)

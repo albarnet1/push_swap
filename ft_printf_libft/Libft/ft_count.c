@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/10/21 14:48:59 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/10/23 16:39:44 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/23 13:57:06 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,5 @@ int	ft_count(int n)
 		n = (unsigned int)n / 10;
 		i++;
 	}
-	if (n == 0)
-		i++;
 	return (i);
 }
