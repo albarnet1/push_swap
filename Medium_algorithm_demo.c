@@ -6,7 +6,7 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/16 11:14:34 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/19 12:17:56 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/23 12:17:19 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,13 +295,12 @@ int main(void)
 	//int arr[] = {1, 2, 3, 0, -9999};
 	t_stack *a = NULL;
 	t_stack *b = NULL;
-	//t_counter *ops = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	t_counter ops = {0};
+	t_counter ops = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	
 	a = fill_stack(a, arr);
 	t_group group = {a, b, &ops};
 	
-	int len = ft_stcksize(group.a);
+	int len = ft_nodecount(group.a);
 	
 	ft_ranking(group.a, len);
 	printf("stack_a:\n");
@@ -340,6 +339,10 @@ int main(void)
 	printf("stack_b:\n");
 	print_stack(group.b);
 	
+	printf("number of pb: %i\n", group.ops->pb);
+	printf("number of pa: %i\n", group.ops->pa);
+	printf("number of rb: %i\n", group.ops->rb);
+	printf("number of ra: %i\n", group.ops->ra);
 	// printf("stack_a:\n");
 	// print_stack(group.a);
 	// printf("stack_b:\n");

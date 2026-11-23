@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/10 15:56:50 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/17 14:42:21 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/23 12:14:18 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,14 @@ void	ft_stckadd_back(t_stack **lst, t_stack *new)
 	tmp->next = new;
 }
 
-int	ft_stcksize(t_stack *lst)
+int	ft_nodecount(t_stack *stack)
 {
-	t_stack	*tmp;
-	int		i;
+	int	i;
 
 	i = 0;
-	tmp = lst;
-	while (tmp)
+	while (stack != NULL)
 	{
-		tmp = tmp->next;
+		stack = stack->next;
 		i++;
 	}
 	return (i);
