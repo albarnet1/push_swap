@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/23 15:54:50 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/23 15:55:22 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,18 @@ void	ft_bench(t_group *stcks, int bench, int mode, int disorder)
 	}
 }
 
-// To discuss: we can avoid -> if declare stacks directly and not via pointers
+void	algorithm(int mode, t_group *stcks, int disorder, int bench)
+{
+	if (mode == 1)
+		ft_simple(stcks, bench);
+	if (mode == 2)
+		ft_medium(stcks, bench);
+	if (mode == 3)
+		ft_complex(stcks, bench);
+	if (mode == 4)
+		ft_adaptive(stcks, disorder, bench);
+}
+
 int	main(int argc, char **argv)
 {
 	int			i;

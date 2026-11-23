@@ -6,7 +6,7 @@
 #    By: albarnet <albarnet@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2026/11/05 14:43:11 by albarnet      #+#    #+#                  #
-#    Updated: 2026/11/23 15:33:28 by albarnet      ########   odam.nl          #
+#    Updated: 2026/11/23 16:06:33 by dakuznet      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ FTPRINTFSOURCES := ft_printf_libft/ft_printf.c \
 		ft_push.c \
 		ft_rotate.c \
 		ft_rrotate.c \
-		ft_adaptive.c
+		ft_adaptive.c \
+		ft_simple.c
 LIBFTSOURCES = ft_printf_libft/Libft/ft_atoi.c ft_printf_libft/Libft/ft_bzero.c ft_printf_libft/Libft/ft_calloc.c \
 		ft_printf_libft/Libft/ft_isalnum.c ft_printf_libft/Libft/ft_isalpha.c ft_printf_libft/Libft/ft_isascii.c \
 		ft_printf_libft/Libft/ft_isdigit.c ft_printf_libft/Libft/ft_isprint.c ft_printf_libft/Libft/ft_memchr.c \
