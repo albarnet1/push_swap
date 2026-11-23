@@ -6,24 +6,11 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/12 12:56:43 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/19 17:03:01 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/23 12:54:10 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ft_nodecount(t_stack *stack)
-{
-	int	i;
-
-	i = 0;
-	while (stack != NULL)
-	{
-		stack = stack->next;
-		i++;
-	}
-	return (i);
-}
 
 int	*ft_convertarr(t_stack *stack, int size)
 {

@@ -6,7 +6,7 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/13 10:42:24 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/19 13:58:15 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/23 12:55:53 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,12 @@ int	ft_compute_disorder(t_stack *stck_a)
 	}
 	if (mistakes == 0 && total_pairs == 0)
 		return (0);
-	return ((mistakes * 100) / total_pairs);
+	return ((mistakes * 10000) / total_pairs);
+}
+
+char	*ft_disordertoascii()
+{
+	
 }
 
 /* int main(void)
