@@ -6,41 +6,12 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/13 10:42:24 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/24 14:57:18 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/24 16:48:54 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
-
-static char	*ft_disordertoa_h(int disorder, char *str1, char *str2)
-{
-	char	*res;
-
-	res = "";
-	if ((disorder / 1000) >= 1)
-	{
-		res = ft_strjoin(str1, ".");
-		res = ft_strjoin(res, str2 + 2);
-		if (!res)
-			return (NULL);
-	}
-	else if ((disorder / 100) >= 1)
-	{
-		res = ft_strjoin(str1, ".");
-		res = ft_strjoin(res, str2 + 1);
-		if (!res)
-			return (NULL);
-	}
-	else if ((disorder / 10) >= 1)
-	{
-		res = ft_strjoin(str1, ".");
-		res = ft_strjoin(res, str2);
-		if (!res)
-			return (NULL);
-	}
-	return (res);
-}
 
 void	*ft_freestrings(char *str1, char *str2)
 {
@@ -59,32 +30,50 @@ void	*ft_freestrings(char *str1, char *str2)
 	return (NULL);
 }
 
-char	*ft_disordertoascii(int disorder)
+static void	ft_disordertoa_h(int disorder, char *str2)
 {
-	char	*res;
-	char	*str1;
+	//char	*res;
+
+	//res = "";
+	if ((disorder / 1000) >= 1)
+	{
+		ft_putnbr_fd(disorder / 100, 2);
+		// write(2, str1, ft_strlen(str1));
+		ft_putchar_fd('.', 2);
+		ft_putstr_fd(str2 + 2, 2);
+	}
+	else if ((disorder / 100) >= 1)
+	{
+		ft_putnbr_fd(disorder / 100, 2);
+		//write(2, str1, ft_strlen(str1));
+		ft_putchar_fd('.', 2);
+		ft_putstr_fd(str2 + 1, 2);
+	}
+	else if ((disorder / 10) >= 1)
+	{
+		ft_putnbr_fd(disorder / 100, 2);
+		ft_putchar_fd('.', 2);
+		ft_putstr_fd(str2, 2);
+	}
+}
+
+void	ft_disordertoascii(int disorder)
+{
 	char	*str2;
 
-	str1 = NULL;
 	str2 = NULL;
-	str1 = ft_itoa(disorder / 100);
 	str2 = ft_itoa(disorder);
-	if (!str1 || !str2)
-		return (ft_freestrings(str1, str2));
-	res = ft_disordertoa_h(disorder, str1, str2);
+	if (!str2)
+		return ;
+	ft_disordertoa_h(disorder, str2);
 	if ((disorder / 10) < 1 && (disorder) >= 1)
 	{
-		res = "0.0";
-		res = ft_strjoin(res, str2);
-		ft_freestrings(str1, str2);
-		if (!res)
-			return (ft_freestrings(str1, str2));
-		return (res);
+		ft_putstr_fd("0.0", 2);
+		ft_putstr_fd(str2, 2);
 	}
 	if (disorder < 1)
-		res = "0.00";
-	ft_freestrings(str1, str2);
-	return (res);
+		ft_putstr_fd("0.00", 2);
+	free (str2);
 }
 
 int	ft_compute_disorder(t_stack *stck_a)
@@ -114,37 +103,36 @@ int	ft_compute_disorder(t_stack *stck_a)
 	return ((mistakes * 10000) / total_pairs);
 }
 
-/* int main(void)
-{
-	int arr[] = {1, 6, 3, 5, -9999};
-	t_stack *a;
-	t_stack *next;
-	int i = 0;
+// int main(void)
+// {
+// 	int arr[] = {1, 3, 2, -9999};
+// 	t_stack *a;
+// 	t_stack *next;
+// 	int i = 0;
 	
-	t_stack *tmp = NULL;
-	a = tmp;
-	while (arr[i] != -9999)
-	{
-		tmp = malloc(sizeof(t_stack));
-		tmp->next = malloc(sizeof(t_stack));
-		if (!tmp)
-			return (1);
-		tmp->number = arr[i];
-		tmp->next = NULL;
-		ft_stckadd_back((&a), tmp);
-		i++;
-	}
+// 	t_stack *tmp = NULL;
+// 	a = tmp;
+// 	while (arr[i] != -9999)
+// 	{
+// 		tmp = malloc(sizeof(t_stack));
+// 		tmp->next = malloc(sizeof(t_stack));
+// 		if (!tmp)
+// 			return (1);
+// 		tmp->number = arr[i];
+// 		tmp->next = NULL;
+// 		ft_stckadd_back((&a), tmp);
+// 		i++;
+// 	}
 
-	printf("Disorder: %f\n", ft_compute_disorder(a));
+// 	printf("Disorder: %d\n", ft_compute_disorder(a));
 
-	while (a != NULL)
-	{
-    	next = a->next;
-		printf("%i ", a->number);
-    	free(a);
-    	a = next;
-	}
+// 	while (a != NULL)
+// 	{
+//     	next = a->next;
+// 		printf("%i ", a->number);
+//     	free(a);
+//     	a = next;
+// 	}
 
-	return (0);
-}
-*/
+// 	return (0);
+// }

@@ -6,7 +6,7 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/23 15:10:53 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/23 15:14:21 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/24 16:49:40 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_adaptive(t_group *stcks, int disorder, int bench)
 {
+	if (disorder == 0)
+		return ;
 	disorder = disorder / 100;
 	if (disorder < 20)
 		ft_simple(stcks, bench);

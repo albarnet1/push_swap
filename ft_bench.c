@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/23 17:00:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/23 18:15:26 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/24 16:22:22 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,18 @@ static void	ft_putops_helper(t_counter *op)
 
 void	ft_bench(t_group *stcks, int bench, int mode, int disorder)
 {
-	char		*dis;
+	//char		*dis;
 	t_counter	*tmp;
 
 	tmp = stcks->ops;
 	if (bench == 1)
 	{
+		//ft_putnbr_fd(disorder, 2);
 		write(2, "[bench] disorder: ", 19);
-		dis = ft_disordertoascii(disorder);
-		write(2, dis, ft_strlen(dis));
-		free(dis);
+		ft_disordertoascii(disorder);
+		//write(2, dis, ft_strlen(dis));
+		// if (strncmp(dis, "0.00", 5) != 0)
+		// 	free(dis);
 		write(2, "%\n[bench] strategy: ", 21);
 		if (mode == 1)
 			ft_putstr_fd("Simple / O(n^2)", 2);

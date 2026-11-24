@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:18 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/24 15:05:33 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/24 16:04:02 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_stckadd_back(t_stack **lst, t_stack *new);
 t_stack	*ft_stcklast(t_stack *lst);
 t_stack	*pop(t_stack **stack);
 int		ft_compute_disorder(t_stack *stck_a);
-char	*ft_disordertoascii(int disorder);
+void	ft_disordertoascii(int disorder);
 int		ft_nodecount(t_stack *stack);
 void	ft_adaptive(t_group *stcks, int disorder, int bench);
 void	ft_simple(t_group *stcks, int bench);

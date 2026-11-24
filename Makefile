@@ -6,12 +6,12 @@
 #    By: albarnet <albarnet@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2026/11/05 14:43:11 by albarnet      #+#    #+#                  #
-#    Updated: 2026/11/24 14:42:56 by albarnet      ########   odam.nl          #
+#    Updated: 2026/11/24 15:56:34 by albarnet      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 CC := cc
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror -g3 #-fsanitize=address#
 NAME := push_swap
 
 FTPRINTFSOURCES := ft_printf_libft/ft_printf.c \
