@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:18 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/23 18:51:15 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/24 15:05:33 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 # include "ft_printf_libft/Libft/libft.h"
 # include "ft_printf_libft/ft_printf.h"
 
-typedef struct	s_stack
+typedef struct s_stack
 {
 	int				number;
 	int				rank;
 	struct s_stack	*next;
 }	t_stack;
 
-typedef	struct s_counter_ops
+typedef struct s_counter_ops
 {
 	int	sa;
 	int	sb;
@@ -38,14 +38,12 @@ typedef	struct s_counter_ops
 	int	rrr;
 }	t_counter;
 
-typedef struct	s_group
+typedef struct s_group
 {
-	t_stack	*a; //pointer to the head node
-	t_stack	*b;
-	t_counter *ops;
+	t_stack		*a; //pointer to the head node
+	t_stack		*b;
+	t_counter	*ops;
 }	t_group;
-
-
 
 void	ft_complex(t_group *stcks, int bench);
 void	algorithm(int mode, t_group *stcks, int disorder, int bench);
@@ -81,6 +79,5 @@ void	rra(t_group *group, int bench);
 void	rrb(t_group *group, int bench);
 void	rrr(t_group *group, int bench);
 int		ft_free(t_group **stcks);
-
 
 #endif

@@ -6,24 +6,23 @@
 #    By: albarnet <albarnet@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2026/11/05 14:43:11 by albarnet      #+#    #+#                  #
-#    Updated: 2026/11/24 12:27:39 by dakuznet      ########   odam.nl          #
+#    Updated: 2026/11/24 14:42:56 by albarnet      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 CC := cc
 CFLAGS := -Wall -Wextra -Werror
 NAME := push_swap
-# NAME2 := push_swap.out
 
 FTPRINTFSOURCES := ft_printf_libft/ft_printf.c \
 		ft_printf_libft/ft_putnbr_base.c \
 		ft_printf_libft/ft_putnbr_base_unsigned.c \
 		main.c \
-		algorithms.c \ # normed
-		ft_simple.c \ # normed
-		ft_medium.c \ # normed
-		complex_sort.c \ 
-		ft_adaptive.c \ # normed
+		algorithms.c \
+		ft_simple.c \
+		ft_medium.c \
+		complex_sort.c \
+		ft_adaptive.c \
 		ft_disorder.c \
 		ft_onerror_funcs.c \
 		list_funcs.c \

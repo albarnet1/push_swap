@@ -6,14 +6,14 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/13 10:42:24 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/23 18:29:16 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/24 14:57:18 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-static char *ft_disordertoa_h(int disorder, char *str1, char *str2)
+static char	*ft_disordertoa_h(int disorder, char *str1, char *str2)
 {
 	char	*res;
 
@@ -42,7 +42,7 @@ static char *ft_disordertoa_h(int disorder, char *str1, char *str2)
 	return (res);
 }
 
-void *ft_freestrings(char *str1, char *str2)
+void	*ft_freestrings(char *str1, char *str2)
 {
 	if (!str1 || !str2)
 	{
@@ -61,9 +61,10 @@ void *ft_freestrings(char *str1, char *str2)
 
 char	*ft_disordertoascii(int disorder)
 {
-	char *res;
-	char *str1;
-	char *str2;
+	char	*res;
+	char	*str1;
+	char	*str2;
+
 	str1 = NULL;
 	str2 = NULL;
 	str1 = ft_itoa(disorder / 100);

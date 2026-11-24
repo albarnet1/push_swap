@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/17 14:41:52 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/23 18:52:41 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/24 14:57:45 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	ft_free(t_group **stcks)
 	return (0);
 }
 
-void ft_free_split(char **splitted)
+void	ft_free_split(char **splitted)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (splitted[i])

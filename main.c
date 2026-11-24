@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/23 18:50:07 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/24 14:58:06 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,30 +82,13 @@ int	ft_fill_list(t_group *stcks, int i, int argc, char **argv)
 	return (1);
 }
 
-
-
-
-
-// void	algorithm(int mode, t_group *stcks, int disorder, int bench)
-// {
-// 	if (mode == 1)
-// 		ft_simple(stcks, bench);
-// 	if (mode == 2)
-// 		ft_medium(stcks, bench);
-// 	if (mode == 3)
-// 		ft_complex(stcks, bench);
-// 	if (mode == 4)
-// 		ft_adaptive(stcks, disorder, bench);
-// }
-
 int	main(int argc, char **argv)
 {
 	int			i;
 	int			mode;
 	int			bench;
-	int		disorder;
+	int			disorder;
 	t_group		*stcks;
-	//t_stack		*current;
 
 	stcks = malloc(sizeof(t_group));
 	if (!stcks)
@@ -143,27 +126,7 @@ int	main(int argc, char **argv)
 	if (ft_check_duplicates(stcks) == 0)
 		return (0);
 	disorder = ft_compute_disorder(stcks->a);
-	// current = stcks->a;
-	// while (current)
-	// {
-	// 	ft_printf("%d ", current->number);
-	// 	current = current->next;
-	// }
-	// ft_printf("\n");
-	i = 1;
-	// while (i < argc)
-	// 	ft_printf("[%s]\n", argv[i++]);
-	// ft_printf("{%d}", argc - 1);
-	// ft_printf("\n");
 	algorithm(mode, stcks, disorder, bench);
-	// ft_printf("\n");
-	// current = stcks->a;
-	// while (current)
-	// {
-	// 	ft_printf("%d ", current->number);
-	// 	current = current->next;
-	// }
-	// ft_printf("\n");
 	ft_bench(stcks, bench, mode, disorder);
 	ft_free(&stcks);
 }

@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/10 12:11:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/24 12:21:24 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/24 14:45:17 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ void	algorithm(int mode, t_group *stcks, int disorder, int bench)
 		ft_medium(stcks, bench);
 	if (mode == 3)
 		ft_complex(stcks, bench);
-	if (mode == 4)
+	else
 		ft_adaptive(stcks, disorder, bench);
 }
