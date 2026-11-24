@@ -6,7 +6,7 @@
 /*   By: dakuznet <dakuznet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/13 10:42:24 by dakuznet      #+#    #+#                 */
-/*   Updated: 2026/11/24 16:48:54 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/24 17:35:31 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,15 @@ void	*ft_freestrings(char *str1, char *str2)
 
 static void	ft_disordertoa_h(int disorder, char *str2)
 {
-	//char	*res;
-
-	//res = "";
 	if ((disorder / 1000) >= 1)
 	{
 		ft_putnbr_fd(disorder / 100, 2);
-		// write(2, str1, ft_strlen(str1));
 		ft_putchar_fd('.', 2);
 		ft_putstr_fd(str2 + 2, 2);
 	}
 	else if ((disorder / 100) >= 1)
 	{
 		ft_putnbr_fd(disorder / 100, 2);
-		//write(2, str1, ft_strlen(str1));
 		ft_putchar_fd('.', 2);
 		ft_putstr_fd(str2 + 1, 2);
 	}
@@ -109,7 +104,7 @@ int	ft_compute_disorder(t_stack *stck_a)
 // 	t_stack *a;
 // 	t_stack *next;
 // 	int i = 0;
-	
+
 // 	t_stack *tmp = NULL;
 // 	a = tmp;
 // 	while (arr[i] != -9999)
