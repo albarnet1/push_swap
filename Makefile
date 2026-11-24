@@ -6,7 +6,7 @@
 #    By: albarnet <albarnet@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2026/11/05 14:43:11 by albarnet      #+#    #+#                  #
-#    Updated: 2026/11/23 17:01:08 by albarnet      ########   odam.nl          #
+#    Updated: 2026/11/24 12:27:39 by dakuznet      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,23 +14,24 @@ CC := cc
 CFLAGS := -Wall -Wextra -Werror
 NAME := push_swap
 # NAME2 := push_swap.out
+
 FTPRINTFSOURCES := ft_printf_libft/ft_printf.c \
 		ft_printf_libft/ft_putnbr_base.c \
 		ft_printf_libft/ft_putnbr_base_unsigned.c \
-		algorithms.c \
-		complex_sort.c \
+		main.c \
+		algorithms.c \ # normed
+		ft_simple.c \ # normed
+		ft_medium.c \ # normed
+		complex_sort.c \ 
+		ft_adaptive.c \ # normed
 		ft_disorder.c \
-		ft_medium.c \
 		ft_onerror_funcs.c \
 		list_funcs.c \
-		main.c \
 		ft_check_duplicates.c \
 		ft_swap.c \
 		ft_push.c \
 		ft_rotate.c \
 		ft_rrotate.c \
-		ft_adaptive.c \
-		ft_simple.c \
 		ft_bench.c
 LIBFTSOURCES = ft_printf_libft/Libft/ft_atoi.c ft_printf_libft/Libft/ft_bzero.c ft_printf_libft/Libft/ft_calloc.c \
 		ft_printf_libft/Libft/ft_isalnum.c ft_printf_libft/Libft/ft_isalpha.c ft_printf_libft/Libft/ft_isascii.c \
