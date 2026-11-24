@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/12 12:56:43 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/23 12:54:10 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/24 16:50:05 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,22 @@ void	ft_match_index(t_group *stcks, int *numbers, int size)
 	free (numbers);
 }
 
+int	ft_count_bit(int size)
+{
+	int	cnt;
+
+	cnt = 0;
+	while (((size - 1) >> cnt) != 0)
+		cnt++;
+	return (cnt);
+}
+
 void	ft_complex(t_group *stcks, int bench)
 {
 	int	i;
 	int	j;
 	int	size;
 	int	*intarr;
-	int	cnt;
 
 	size = ft_nodecount(stcks->a);
 	intarr = ft_convertarr(stcks->a, size);
@@ -87,23 +96,17 @@ void	ft_complex(t_group *stcks, int bench)
 	ft_sortarr(intarr);
 	ft_match_index(stcks, intarr, size);
 	i = 0;
-	j = 0;
-	cnt = 0;
-	while (((size - 1) >> cnt) != 0)
-		cnt++;
-	while (i < cnt)
+	while (i++ < ft_count_bit(size))
 	{
 		j = 0;
-		while (j < size)
+		while (j++ < size)
 		{
 			if ((stcks->a->rank >> i) & 1)
 				ra(stcks, bench);
 			else
 				pb(stcks, bench);
-			j++;
 		}
 		while (stcks->b != NULL)
 			pa(stcks, bench);
-		i++;
 	}
 }
