@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/23 17:00:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/24 17:34:28 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/25 13:31:10 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	ft_putops_helper(t_counter *op)
 	ft_putcount("rrr", op->rrr, 0);
 }
 
-void	ft_bench(t_group *stcks, int bench, int mode, int disorder)
+void	ft_bench(t_group *stcks, int bench, int disorder)
 {
 	t_counter	*tmp;
 
@@ -66,13 +66,13 @@ void	ft_bench(t_group *stcks, int bench, int mode, int disorder)
 		write(2, "[bench] disorder: ", 19);
 		ft_disordertoascii(disorder);
 		write(2, "%\n[bench] strategy: ", 21);
-		if (mode == 1)
+		if (stcks->mode == 1)
 			ft_putstr_fd("Simple / O(n^2)", 2);
-		if (mode == 2)
+		if (stcks->mode == 2)
 			ft_putstr_fd("Medium / O(n√n)", 2);
-		if (mode == 3)
+		if (stcks->mode == 3)
 			ft_putstr_fd("Complex / O(n log n)", 2);
-		if (mode == 4)
+		if (stcks->mode == 4)
 			ft_putstr_fd("Adaptive / ", 2);
 		ft_putcount("total_ops", ft_sum_operations(tmp), 1);
 		ft_putops_helper(stcks->ops);

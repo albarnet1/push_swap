@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:18 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/24 16:04:02 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/25 13:30:45 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,11 @@ typedef struct s_group
 	t_stack		*a; //pointer to the head node
 	t_stack		*b;
 	t_counter	*ops;
+	int			mode;
 }	t_group;
 
 void	ft_complex(t_group *stcks, int bench);
-void	algorithm(int mode, t_group *stcks, int disorder, int bench);
+void	algorithm(t_group *stcks, int disorder, int bench);
 void	ft_medium(t_group *stcks, int bench);
 int		ft_check_duplicates(t_group *stcks);
 int		*ft_convertarr(t_stack *stack, int size);
@@ -60,7 +61,7 @@ void	ft_disordertoascii(int disorder);
 int		ft_nodecount(t_stack *stack);
 void	ft_adaptive(t_group *stcks, int disorder, int bench);
 void	ft_simple(t_group *stcks, int bench);
-void	ft_bench(t_group *stcks, int bench, int mode, int disorder);
+void	ft_bench(t_group *stcks, int bench, int disorder);
 void	ft_free_split(char **splitted);
 
 void	swap(t_stack **stack);

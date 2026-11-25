@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/10 12:11:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/25 13:54:06 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/25 13:57:02 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,17 @@ void	ft_init_operations(t_counter *ops)
 	ops->rrr = 0;
 }
 
-void	algorithm(int mode, t_group *stcks, int disorder, int bench)
+void	algorithm(t_group *stcks, int disorder, int bench)
 {
 	ft_init_operations(stcks->ops);
 	if (disorder != 0)
 	{
-		if (mode == 1)
+		ft_init_operations(stcks->ops);
+		if (stcks->mode == 1)
 			ft_simple(stcks, bench);
-		if (mode == 2)
+		if (stcks->mode == 2)
 			ft_medium(stcks, bench);
-		if (mode == 3)
+		if (stcks->mode == 3)
 			ft_complex(stcks, bench);
 		else
 			ft_adaptive(stcks, disorder, bench);
