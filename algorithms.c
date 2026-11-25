@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/10 12:11:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/24 17:10:49 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/25 13:54:06 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	ft_init_operations(t_counter *ops)
 
 void	algorithm(int mode, t_group *stcks, int disorder, int bench)
 {
+	ft_init_operations(stcks->ops);
 	if (disorder != 0)
 	{
-		ft_init_operations(stcks->ops);
 		if (mode == 1)
 			ft_simple(stcks, bench);
 		if (mode == 2)

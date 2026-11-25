@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/12 12:56:43 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/24 16:50:05 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/25 13:55:32 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	*ft_convertarr(t_stack *stack, int size)
 	int	i;
 
 	i = 0;
+	numbers = NULL;
 	numbers = (int *)malloc(sizeof(int) * size);
+		if (!numbers)
+		return (NULL);
 	while (i < size)
 	{
 		numbers[i++] = stack->number;
