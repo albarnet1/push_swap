@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:18 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/25 13:30:45 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/25 14:11:14 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_group
 	t_stack		*b;
 	t_counter	*ops;
 	int			mode;
+	int			a_size;
 }	t_group;
 
 void	ft_complex(t_group *stcks, int bench);

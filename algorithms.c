@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/10 12:11:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/25 13:57:02 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/25 14:13:30 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_init_operations(t_counter *ops)
 
 void	algorithm(t_group *stcks, int disorder, int bench)
 {
+	stcks->a_size = ft_nodecount(stcks->a);
 	ft_init_operations(stcks->ops);
 	if (disorder != 0)
 	{

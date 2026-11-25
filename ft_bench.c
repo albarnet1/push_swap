@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/23 17:00:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/25 13:31:10 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/25 14:45:42 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ void	ft_bench(t_group *stcks, int bench, int disorder)
 			ft_putstr_fd("Adaptive / ", 2);
 		ft_putcount("total_ops", ft_sum_operations(tmp), 1);
 		ft_putops_helper(stcks->ops);
+		ft_putchar_fd('\n', 2);
 	}
 }

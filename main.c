@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/25 13:41:50 by dakuznet      ########   odam.nl         */
+/*   Updated: 2026/11/25 15:54:49 by albarnet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,20 +103,25 @@ int	main(int argc, char **argv)
 	bench = 0;
 	if (argc < 2)
 		return (ft_free(&stcks));
-	if (ft_strncmp(argv[i], "--bench", 7) == 0)
+	if (ft_strncmp(argv[i], "--bench", 8) == 0)
 	{
 		bench = 1;
 		i = 2;
 	}
-	if (ft_strncmp(argv[i], "--simple", 8) == 0)
-		stcks->mode = 1;
-	else if (ft_strncmp(argv[i], "--medium", 8) == 0)
-		stcks->mode = 2;
-	else if (ft_strncmp(argv[i], "--complex", 9) == 0)
-		stcks->mode = 3;
-	else if (ft_strncmp(argv[i], "--adaptive", 10) == 0)
-		stcks->mode = 4;
+	if (i < argc)
+	{
+		if (ft_strncmp(argv[i], "--simple", 9) == 0)
+			stcks->mode = 1;
+		else if (ft_strncmp(argv[i], "--medium", 9) == 0)
+			stcks->mode = 2;
+		else if (ft_strncmp(argv[i], "--complex", 10) == 0)
+			stcks->mode = 3;
+		else if (ft_strncmp(argv[i], "--adaptive", 11) == 0)
+			stcks->mode = 4;
+	}
 	if (stcks->mode != 0 && bench == 1 && argc == 3)
+		return (ft_free(&stcks));
+	if (bench == 1 && argc == 2)
 		return (ft_free(&stcks));
 	if (stcks->mode != 0)
 		i++;
