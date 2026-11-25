@@ -6,7 +6,7 @@
 #    By: albarnet <albarnet@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2026/11/05 14:43:11 by albarnet      #+#    #+#                  #
-#    Updated: 2026/11/24 15:56:34 by albarnet      ########   odam.nl          #
+#    Updated: 2026/11/25 15:36:42 by dakuznet      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,17 +48,20 @@ LIBFTSOURCES = ft_printf_libft/Libft/ft_atoi.c ft_printf_libft/Libft/ft_bzero.c 
 		ft_printf_libft/Libft/ft_lstlast.c ft_printf_libft/Libft/ft_lstnew.c ft_printf_libft/Libft/ft_lstsize.c \
 		ft_printf_libft/Libft/ft_lstmap.c ft_printf_libft/Libft/ft_count.c
 LIBFTFOLDER := Libft/$(LIBFTSOURCES)
-OBJECTS := $(FTPRINTFSOURCES:.c=.o) $(LIBFTSOURCES:.c=.o)
+OBJECTS := $(LIBFTSOURCES:%.c=%.o) $(FTPRINTFSOURCES:%.c=%.o)
 SUBDIRS := ft_printf_libft/ ft_printf_libft/Libft/
 SUBARCHIVES := ft_printf_libft/libftprintf.a ft_printf_libft/Libft/libft.a
 
-all: $(NAME)
+all:$(NAME)
 
 # $(NAME): $(OBJECTS)
 # 	ar rcs $(NAME) $(OBJECTS)
 
 $(NAME): $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
+
+# %.o: %.c $(OBJECTS)
+# 	cc $(CFLAGS) -c $< -o $(NAME)
 
 ft_printf_libft/ft_printf.a:
 	$(MAKE) -C $(dir $@)
