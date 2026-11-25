@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/24 14:58:06 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/25 13:41:50 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int	ft_fill_list(t_group *stcks, int i, int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	int			i;
-	int			mode;
 	int			bench;
 	int			disorder;
 	t_group		*stcks;
@@ -100,7 +99,7 @@ int	main(int argc, char **argv)
 	if (stcks->ops == NULL)
 		return (ft_free(&stcks));
 	i = 1;
-	mode = 0;
+	stcks->mode = 0;
 	bench = 0;
 	if (argc < 2)
 		return (ft_free(&stcks));
@@ -110,23 +109,23 @@ int	main(int argc, char **argv)
 		i = 2;
 	}
 	if (ft_strncmp(argv[i], "--simple", 8) == 0)
-		mode = 1;
+		stcks->mode = 1;
 	else if (ft_strncmp(argv[i], "--medium", 8) == 0)
-		mode = 2;
+		stcks->mode = 2;
 	else if (ft_strncmp(argv[i], "--complex", 9) == 0)
-		mode = 3;
+		stcks->mode = 3;
 	else if (ft_strncmp(argv[i], "--adaptive", 10) == 0)
-		mode = 4;
-	if (mode != 0 && bench == 1 && argc == 3)
+		stcks->mode = 4;
+	if (stcks->mode != 0 && bench == 1 && argc == 3)
 		return (ft_free(&stcks));
-	if (mode != 0)
+	if (stcks->mode != 0)
 		i++;
 	if (ft_fill_list(stcks, i, argc, argv) == 0)
 		return (0);
 	if (ft_check_duplicates(stcks) == 0)
 		return (0);
 	disorder = ft_compute_disorder(stcks->a);
-	algorithm(mode, stcks, disorder, bench);
-	ft_bench(stcks, bench, mode, disorder);
+	algorithm(stcks, disorder, bench);
+	ft_bench(stcks, bench, disorder);
 	ft_free(&stcks);
 }
