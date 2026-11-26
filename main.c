@@ -6,7 +6,7 @@
 /*   By: albarnet <albarnet@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/11/05 14:43:08 by albarnet      #+#    #+#                 */
-/*   Updated: 2026/11/25 15:54:49 by albarnet      ########   odam.nl         */
+/*   Updated: 2026/11/26 15:17:37 by dakuznet      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,48 @@ int	ft_isnum(char *s)
 	return (1);
 }
 
-int	ft_fill_list(t_group *stcks, int i, int argc, char **argv)
+int	trim_input(t_group *stcks, int i, int argc, char **argv)
 {
-	int			nbr;
-	char		**splitted;
-	int			j;
-	t_stack		*tmp;
+	int	j;
 
 	j = 0;
-	nbr = 0;
-	if (!argv[i])
-		return (0);
-	j = i;
 	while (argv[argc - 1][0] == '\0')
-	{
 		argc--;
-	}
 	while (strncmp(argv[j++], "", 1) == 0 && i != argc)
 	{
 		if (j == argc)
 			return (ft_free(&stcks));
 	}
+	return (argc);
+}
+
+int	new_node(char **splitted, t_group *stcks)
+{
+	int		j;
+	t_stack	*tmp;
+	int		nbr;
+
 	j = 0;
+	while (splitted[j] != NULL)
+	{
+		tmp = malloc(sizeof(t_stack));
+		if (!tmp)
+			return (ft_free(&stcks));
+		nbr = ft_atoi(splitted[j++]);
+		tmp->number = nbr;
+		tmp->next = NULL;
+		ft_stckadd_back((&stcks->a), tmp);
+	}
+	return (1);
+}
+
+int	ft_fill_list(t_group *stcks, int i, int argc, char **argv)
+{
+	char		**splitted;
+
+	if (!argv[i])
+		return (0);
+	argc = trim_input(stcks, i, argc, argv);
 	while (i < argc)
 	{
 		if (ft_isnum(argv[i]) == 0)
@@ -66,18 +86,9 @@ int	ft_fill_list(t_group *stcks, int i, int argc, char **argv)
 		splitted = ft_split(argv[i++], ' ');
 		if (!splitted)
 			return (ft_free(&stcks));
-		while (splitted[j] != NULL)
-		{
-			tmp = malloc(sizeof(t_stack));
-			if (!tmp)
-				return (ft_free(&stcks));
-			nbr = ft_atoi(splitted[j++]);
-			tmp->number = nbr;
-			tmp->next = NULL;
-			ft_stckadd_back((&stcks->a), tmp);
-		}
+		if (new_node(splitted, stcks) == 0)
+			return (0);
 		ft_free_split(splitted);
-		j = 0;
 	}
 	return (1);
 }
